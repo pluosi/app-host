@@ -93,6 +93,7 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
+    normalize-rails (4.1.1)
     public_suffix (2.0.5)
     puma (3.9.1)
     rack (2.0.3)
@@ -185,6 +186,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
+  normalize-rails
   puma (~> 3.7)
   rails (~> 5.1.2)
   sass-rails (~> 5.0)

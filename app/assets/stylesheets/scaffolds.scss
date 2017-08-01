@@ -1,0 +1,31 @@
+.app-host-nav {
+  margin-bottom: 0;
+  background-color: #f8f8f8;
+  border-bottom: solid 1px #DEDEDE;
+}
+.app-home-nav .app-nav-b {
+  display: none;
+}
+.app-host-nav .navbar-brand,
+.app-host-nav .navbar-nav > li > a {
+  font-weight: 500;
+  color: #03A3FC;
+}
+.app-host-nav .navbar-nav > li > a:hover,
+.app-host-nav .navbar-nav > .active > a,
+.app-host-nav .navbar-nav > .active > a:hover {
+  color: #463265;
+  background-color: #f9f9f9;
+}
+.app-host-nav .navbar-toggle .icon-bar {
+  background-color: #563d7c;
+}
+.app-host-nav .navbar-header .navbar-toggle {
+  border-color: #f0f0f0;
+}
+.app-host-nav .navbar-header .navbar-toggle:hover,
+.app-host-nav .navbar-header .navbar-toggle:focus {
+  background-color: #f9f9f9;
+  border-color: #f9f9f9;
+}
+

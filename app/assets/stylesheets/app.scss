@@ -1,0 +1,58 @@
+.app-host-container{
+  @media (max-width: 900px){
+    padding-left: 0px;
+    padding-right: 0px;
+    .cell{
+      overflow: hidden;
+      $icon_with : 48px;
+      $padding_size : 15px;
+      .divider{
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: #E0E0E0;
+        margin-left: $padding_size;
+      }
+      .cell-container{
+        overflow: hidden;
+        box-sizing: border-box;
+        padding-left: $padding_size;
+        .icon{
+          width: $icon_with;
+          height: $icon_with;
+          border-radius: 8px;
+          overflow: hidden;
+          float: left;
+          margin: 12px 0;
+          img{
+            width: 100%;
+          }
+        }
+        .detail{
+          display: block;
+          float: left;
+          padding: $padding_size - 2px 0;
+          width:-moz-calc(100% - 48px); 
+          width:-webkit-calc(100% - 48px); 
+          width: calc(100% - 48px);
+          padding-left: 12px;
+          .title{
+            display: block;
+            width: 100%;
+            font-size: 16px;
+          }
+          .date-label{
+            float: right;
+            margin-right: $padding_size;
+            font-size: 13px;
+            color: #999999;
+          }
+          .sub-title{
+            color: #666666;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}
