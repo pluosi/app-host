@@ -106,20 +106,42 @@
       margin-top: 60px;
     }
   }
-  .next-page{
-    .qrcode{
-      position: relative;
+  .qrcode{
+    position: relative;
+    text-align: center;
+    top: -30px;
+    img{
+      width: 91px;
+      margin: 0 auto;
+    }
+    label{
+      font-size: 13px;
+      color: #9B9B9B;
       text-align: center;
-      top: -30px;
-      img{
-        width: 91px;
-        margin: 0 auto;
+      margin-top: 6px;
+    }
+  }
+  .history{
+    box-sizing: border-box;
+    padding: 0 12px;
+    width: 100%;
+    .wrap{
+      background-color: #F8F8F8;
+      border-radius: 4px;
+      padding: 1px 20px;
+      .title{
+        font-size: 14px;
+        color: #666666;
       }
-      label{
-        font-size: 13px;
-        color: #9B9B9B;
-        text-align: center;
-        margin-top: 6px;
+      .day-block{
+        .title{
+          font-size: 14px;
+          color: #9B9B9B;
+        }
+        li{
+          color: #9B9B9B;
+          font-size: 13px;
+        }
       }
     }
   }
