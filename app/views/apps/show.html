@@ -1,0 +1,28 @@
+<div class="app show">
+  <div class="first-page">
+    <div class="info-container">
+      <div class="app-info">
+        <div class="icon">
+          <img src="http://lorempixel.com/120/120/?<%=rand()%>">
+        </div>
+        <div class="title">贷款大师</div>
+        <div class="info">版本 2.90  18.8MB  2天前</div>
+      </div>
+      <a class="download-btn">
+        下载
+      </a>
+    </div>
+  </div>
+  <div class="next-page">
+    <div class="qrcode">
+      <div id="qrcode"></div>
+      <label>或者用手机扫描下面的二维码安装</label>
+    </div>
+    <script type="text/javascript">
+      new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
+    </script>
+  </div>
+</div>
+
+
+

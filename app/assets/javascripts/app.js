@@ -1,0 +1,6 @@
+$('.app.show').ready(function($) {
+  
+
+
+
+});
