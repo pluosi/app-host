@@ -1,0 +1,34 @@
+.app.new{
+  .new_app{
+    margin: 0 auto;
+    border: solid 1px #ddd;
+    width: 400px;
+    margin-top: 80px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 12px;
+    .title{
+      border-bottom: solid 1px #ddd;
+      font-size: 20px;
+      color: #03A3FC;
+      font-weight: normal;
+      line-height: 34px;
+      span{
+        border-bottom: solid 1px #03A3FC;
+        line-height: 34px;
+        display: inline-block;
+      }
+    }
+    .form-group{
+      margin-top: 22px;
+      label{
+        color: #666;
+        font-size: 14px;
+        font-weight: normal;
+      }
+    }
+    input[type=submit]{
+      margin: 0 auto;
+    }
+  } 
+}

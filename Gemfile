@@ -34,7 +34,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'bootstrap-sass'
+# gem "flat-ui-rails"
 gem 'normalize-rails'
+
+gem 'jquery-rails'
 
 
 group :development, :test do

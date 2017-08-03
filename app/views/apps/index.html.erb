@@ -1,23 +1,12 @@
-<header class="navbar navbar-static-top app-host-nav theme-gray" id="top">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#app-navbar" aria-controls="app-navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="/" class="navbar-brand">APP HOST</a>
-    </div>
-    <nav id="app-navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/">管理</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<%=render 'layouts/header'%>
 
 <div class="container app index app-host-container">
+
+<!-- Button trigger modal -->
+<%=link_to "添加", new_app_path, class: "pull-right"%>
+<br>
+<hr>
+
   <%5.times do%>
     <%=render 'cell'%>
   <%end%>
