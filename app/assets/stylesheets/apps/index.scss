@@ -1,6 +1,65 @@
 .app.index{
   &.app-host-container{
     margin-top: 20px;
+    @media (min-width: 901px){
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-content: flex-start;
+      .cell{
+        overflow: hidden;
+        $icon_with : 100px;
+        margin-bottom: 20px;
+        &.new{
+          .cell-container{
+            border: solid 1px #337ab7;
+          }
+        }
+        .divider{
+          display: none;
+        }
+        .cell-container{
+          overflow: hidden;
+          height: 460px;
+          border: none;
+          box-sizing: border-box;
+          background-color: #fff;
+          padding: 20px 32px;
+          .icon{
+            width: $icon_with;
+            height: $icon_with;
+            border-radius: 17.544%;
+            overflow: hidden;
+            margin: 12px 0;
+            img{
+              width: 100%;
+            }
+          }
+          .detail{
+            display: block;
+            width:-moz-calc(100% - 48px); 
+            width:-webkit-calc(100% - 48px); 
+            width: calc(100% - 48px);
+            .title{
+              display: block;
+              width: 100%;
+              font-size: 16px;
+            }
+            .date-label{
+              float: right;
+              font-size: 13px;
+              color: #999999;
+            }
+            .sub-title{
+              color: #666666;
+              font-size: 13px;
+            }
+          }
+        }
+      }
+
+    }
     @media (max-width: 900px){
       padding-left: 0px;
       padding-right: 0px;

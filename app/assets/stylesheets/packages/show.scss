@@ -1,0 +1,98 @@
+.app.show{
+  .first-page{
+    height: 100vh;
+    display: flex;
+    width: 100%;
+    /*background-color: yellow;*/
+    .info-container{
+      margin: auto;
+      /*background-color: red;  */
+    }
+    .app-info{
+      .icon{
+        width: 75px;
+        height: 75px;
+        border-radius: 10px;
+        margin: 0 auto;
+        overflow: hidden;
+        img{
+          width: 100%;
+        }
+      }
+      .title{
+        text-align: center;
+        color: #4A4A4A;
+        font-size: 20px;
+        margin-top: 18px;
+      }
+      .info{
+        text-align: center;
+        color: #9B9B9B;
+        font-size: 14px;
+        
+      }
+    }
+    .download-btn{
+      width: 165px;
+      display: block;
+      margin: 0 auto; 
+      background-color: #03A3FC;
+      color: white;
+      font-size: 16px;
+      border-radius: 20px;
+      text-align: center;
+      line-height: 40px;
+      margin-top: 60px;
+    }
+  }
+  .qrcode{
+    position: relative;
+    text-align: center;
+    top: -30px;
+    img{
+      width: 91px;
+      margin: 0 auto;
+    }
+    label{
+      font-size: 13px;
+      color: #9B9B9B;
+      text-align: center;
+      margin-top: 6px;
+      font-weight: normal;
+    }
+  }
+  .history{
+    box-sizing: border-box;
+    padding: 0 12px;
+    width: 100%;
+    .wrap{
+      background-color: #F8F8F8;
+      border-radius: 4px;
+      padding: 1px 20px;
+      .title{
+        font-size: 14px;
+        color: #666666;
+      }
+      .day-block{
+        .title{
+          font-size: 14px;
+          color: #9B9B9B;
+          font-weight: normal;
+        }
+        li{
+          color: #9B9B9B;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+
+  .footer{
+    text-align: center;
+    a{
+      font-size: 14px;
+      color: #DEDEDE;
+      line-height: 44px;
+    }
+  }
+}

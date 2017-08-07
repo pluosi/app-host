@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803141721) do
+ActiveRecord::Schema.define(version: 20170806102018) do
 
   create_table "apps", force: :cascade do |t|
     t.string "name"
@@ -22,9 +22,12 @@ ActiveRecord::Schema.define(version: 20170803141721) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "desc"
+    t.integer "channels_count", default: 0
+    t.integer "palts_count", default: 0
+    t.integer "packages_count", default: 0
   end
 
-  create_table "packages", force: :cascade do |t|
+  create_table "pkgs", force: :cascade do |t|
     t.integer "app_id"
     t.string "name"
     t.string "icon"
@@ -32,6 +35,17 @@ ActiveRecord::Schema.define(version: 20170803141721) do
     t.string "ident"
     t.string "version"
     t.string "build"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "plat_id"
+  end
+
+  create_table "plats", force: :cascade do |t|
+    t.string "name"
+    t.string "plat"
+    t.integer "app_id"
+    t.string "pkg_name"
+    t.integer "packages_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

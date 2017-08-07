@@ -29,3 +29,35 @@
   border-color: #f9f9f9;
 }
 
+.ui-plat{
+  border-radius: 2px;
+}
+.ui-color{
+  color: #03A3FC;
+}
+.ui-bgcolor{
+  background-color: #03A3FC;
+}
+
+.app{
+  input[type=text],textarea{
+    border-color: #ddd;
+    border-radius: 2px;
+  }
+}
+
+@media (min-width: 1200px){
+  .container{
+    width: 1024px;
+  }
+}
+
+@media (min-width: 901px){
+  body{
+    background-color: #F6F6F6;
+  }
+  .app-host-nav {
+    color: #463265;
+    background-color: #fff;
+  }
+}

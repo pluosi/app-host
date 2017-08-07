@@ -1,0 +1,9 @@
+<%=render 'layouts/header'%>
+
+<div class="container app show">
+  <%=link_to '上传', new_plat_pkg_path(@plat), class:"btn btn-primary ui-plat" %>
+  <div class="row">
+    <%= render partial: "cell", collection: @pkgs %>
+  </div>
+
+</div>

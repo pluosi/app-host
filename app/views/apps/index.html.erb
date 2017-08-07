@@ -3,11 +3,14 @@
 <div class="container app index app-host-container">
 
 <!-- Button trigger modal -->
-<%=link_to "添加", new_app_path, class: "pull-right"%>
-<br>
-<hr>
+<%#=link_to "添加", new_app_path, class: "pull-right"%>
+<!-- <br>
+<hr> -->
+<div class="row">
+<%=render "cell_add" %>
+  <%= render partial: "cell", collection: @apps %>
+</div>
 
-  <%5.times do%>
-    <%=render 'cell'%>
-  <%end%>
+
+  
 </div>

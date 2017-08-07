@@ -1,0 +1,67 @@
+<%=render 'layouts/header'%>
+
+<div class="app show">
+  <div class="first-page">
+    <div class="info-container">
+      <div class="app-info">
+        <div class="icon">
+          <img src="http://lorempixel.com/120/120/?<%=rand()%>">
+        </div>
+        <div class="title">贷款大师</div>
+        <div class="info">版本 2.90  18.8MB  2天前</div>
+      </div>
+      <a class="download-btn">
+        下载
+      </a>
+    </div>
+  </div>
+  <div class="qrcode">
+    <div id="qrcode"></div>
+    <label>或者用手机扫描下面的二维码安装</label>
+  </div>
+
+
+  <div class="history">
+    <div class="wrap">
+      <h3 class="title">历史版本</h3>
+      <div class="day-block">
+        <label class="title">
+           2017-06-02
+        </label>
+        <ul>
+          <li>2.1 (build 2.1.34)   18.6MB  18:05</li>
+          <li>2.1 (build 2.1.33)   18.6MB  14:05</li>
+          <li>2.1 (build 2.1.32)   18.6MB  13:05</li>
+          <li>2.1 (build 2.1.32)   18.6MB  13:05</li>
+          <li>2.1 (build 2.1.33)   18.6MB  14:05</li>
+          <li>2.1 (build 2.1.32)   18.6MB  13:05</li>
+          <li>2.1 (build 2.1.32)   18.6MB  13:05</li>
+        </ul>
+      </div>
+
+      <div class="day-block">
+        <label class="title">
+           2017-06-01
+        </label>
+        <ul>
+          <li>2.1 (build 2.1.34)   18.6MB  18:05</li>
+          <li>2.1 (build 2.1.33)   18.6MB  14:05</li>
+          <li>2.1 (build 2.1.32)   18.6MB  13:05</li>
+          <li>2.1 (build 2.1.32)   18.6MB  13:05</li>
+          <li>2.1 (build 2.1.33)   18.6MB  14:05</li>
+          <li>2.1 (build 2.1.32)   18.6MB  13:05</li>
+          <li>2.1 (build 2.1.32)   18.6MB  13:05</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <a href="https://github.com/pluosi">- pluosi.com -</a>
+  </footer>
+</div>
+
+<script type="text/javascript">
+  new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
+</script>
+
+

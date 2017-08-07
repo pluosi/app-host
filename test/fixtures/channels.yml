@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  plat: MyString
+  app_id: 1
+  pkg_name: MyString
+
+two:
+  name: MyString
+  plat: MyString
+  app_id: 1
+  pkg_name: MyString

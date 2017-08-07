@@ -2,17 +2,20 @@
   .new_app{
     margin: 0 auto;
     border: solid 1px #ddd;
-    width: 400px;
-    margin-top: 80px;
+    width: 360px;
+    margin-top: 16%;
     border-radius: 4px;
     box-sizing: border-box;
     padding: 12px;
+    background-color: #fff;
+    @media (max-width: 900px){
+      width: 100%;
+    }
     .title{
       border-bottom: solid 1px #ddd;
-      font-size: 20px;
+      font-size: 18px;
       color: #03A3FC;
       font-weight: normal;
-      line-height: 34px;
       span{
         border-bottom: solid 1px #03A3FC;
         line-height: 34px;
@@ -22,7 +25,7 @@
     .form-group{
       margin-top: 22px;
       label{
-        color: #666;
+        color: #999;
         font-size: 14px;
         font-weight: normal;
       }
