@@ -1,9 +1,9 @@
 class PkgsController < ApplicationController
-  before_action :set_plat, only: [:show,:new]
+  before_action :set_plat, only: [:show,:new,:create]
 
 
   def show
-    @pkgs = @plat.pkgs
+    @pkg = Pkg.find params[:id]
   end
 
   def new
@@ -11,8 +11,12 @@ class PkgsController < ApplicationController
   end
 
   def create
-    plat = Plat.create(plat_params)
-    redirect_to plat_path plat
+    pkg = Pkg.new(pkg_params)
+    pkg.name = "unset"
+
+    pkg.save
+
+    redirect_to plat_pkg_path @plat, pkg
   end
 
   private
@@ -22,7 +26,7 @@ class PkgsController < ApplicationController
   end
 
   # # Never trust parameters from the scary internet, only allow the white list through.
-  def plat_params
-    params.require(:plat).permit(:name);
+  def pkg_params
+    params.require(:pkg).permit(:file,:app_id,:plat_id)
   end
 end

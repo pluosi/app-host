@@ -1,7 +1,8 @@
 <%=render 'layouts/header'%>
 
-<div class="container palt new">
+<div class="container plat new">
   <%=form_for @plat, url: app_plats_path do |f|%>
+    <%= hidden_field_tag "plat[app_id]", @plat.app_id %>
     <div class="title"><span>新建渠道</span></div>
     <div class="form-group">
       <label for="app_name">渠道名称：</label>

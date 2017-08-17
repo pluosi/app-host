@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: channels
+# Table name: plats
 #
 #  id             :integer          not null, primary key
 #  name           :string

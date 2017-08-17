@@ -1,9 +1,21 @@
 <%=render 'layouts/header'%>
 
-<div class="container app show">
-  <%=link_to '上传', new_plat_pkg_path(@plat), class:"btn btn-primary ui-plat" %>
-  <div class="row">
-    <%= render partial: "cell", collection: @pkgs %>
+<div class="container plat show app-host-container">
+  <ul class="nav nav-tabs">
+      <%@plats.each_with_index do |plat,index|%>
+        <% if plat.id == params[:id].to_i %>
+          <li role="presentation" class="active"><%=link_to plat.name, app_plat_path(@app,plat) %></li>
+        <% else %>
+          <li role="presentation"><%=link_to plat.name, app_plat_path(@app,plat) %></li>
+        <% end %>
+      <% end %>
+      <li role="presentation" class="visible-md visible-lg"><%=link_to '+', new_app_plat_path %></li>
+  </ul>
+
+  <div class="row ">
+    <%=render partial: "cell", collection: @pkgs, as: :pkg %>
   </div>
+
+  <%=link_to '上传', new_plat_pkg_path(@plat), class:"btn btn-primary ui-plat visible-md visible-lg" %>
 
 </div>

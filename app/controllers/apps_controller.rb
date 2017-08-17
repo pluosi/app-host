@@ -6,7 +6,7 @@ class AppsController < ApplicationController
   end
 
   def show
-    redirect_to app_plats_path @app
+    # redirect_to app_plats_path @app
   end
 
   def new

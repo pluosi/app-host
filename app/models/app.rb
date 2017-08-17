@@ -13,6 +13,7 @@
 #  updated_at     :datetime         not null
 #  desc           :string
 #  channels_count :integer          default(0)
+#  palts_count    :integer          default(0)
 #  packages_count :integer          default(0)
 #
 

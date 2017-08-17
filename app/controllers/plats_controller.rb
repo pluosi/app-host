@@ -1,13 +1,17 @@
 class PlatsController < ApplicationController
-  before_action :set_app, only: [:new, :create, :edit, :update, :destroy, :comments]
+  before_action :set_app, only: [:index, :show, :new, :create, :edit, :update, :destroy, :comments]
   before_action :set_plat, only: [:show]
 
   def index
-    @plats = Plat.all
+    @plats = Plat.where(app_id:params[:app_id])
+    if @plats.present?
+      redirect_to app_plat_path @app,@plats.first
+    end
   end
 
   def show
     @pkgs = @plat.pkgs
+    @plats = Plat.where(app_id:params[:app_id])
   end
 
   def new
@@ -16,7 +20,7 @@ class PlatsController < ApplicationController
 
   def create
     plat = Plat.create(plat_params)
-    redirect_to plat_path plat
+    redirect_to app_plat_path @app, plat
   end
 
   private
@@ -31,6 +35,6 @@ class PlatsController < ApplicationController
 
   # # Never trust parameters from the scary internet, only allow the white list through.
   def plat_params
-    params.require(:plat).permit(:name);
+    params.require(:plat).permit(:name,:app_id);
   end
 end

@@ -56,6 +56,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (1.1.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     childprocess (0.7.1)
       ffi (~> 1.0, >= 1.0.11)
     coffee-rails (4.2.2)
@@ -91,6 +95,7 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mini_magick (4.8.0)
     mini_portile2 (2.2.0)
     minitest (5.10.3)
     multi_json (1.12.1)
@@ -98,6 +103,8 @@ GEM
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
     normalize-rails (4.1.1)
+    paranoia (2.3.1)
+      activerecord (>= 4.0, < 5.2)
     public_suffix (2.0.5)
     puma (3.9.1)
     rack (2.0.3)
@@ -187,13 +194,17 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   capybara (~> 2.13)
+  carrierwave
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  mini_magick
   normalize-rails
+  paranoia (~> 2.2)
   puma (~> 3.7)
   rails (~> 5.1.2)
+  rubyzip
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
