@@ -14,4 +14,10 @@
 
 class Plat < ApplicationRecord
   has_many :pkgs
+
+  enum plat: {
+    ios: 'ios',
+    android: 'android'
+  }
+  
 end

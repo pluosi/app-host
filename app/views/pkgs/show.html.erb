@@ -5,10 +5,10 @@
     <div class="info-container">
       <div class="app-info">
         <div class="icon">
-          <img src="http://lorempixel.com/120/120/?<%=rand()%>">
+          <%=image_tag(@pkg.icon)%>
         </div>
-        <div class="title">贷款大师</div>
-        <div class="info">版本 2.90  18.8MB  2天前</div>
+        <div class="title"><%=@pkg.name%></div>
+        <div class="info">版本 <%=@pkg.version%>  18.8MB  <%=time_ago_in_words @pkg.created_at %> </div>
       </div>
       <a class="download-btn">
         下载

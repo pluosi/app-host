@@ -24,12 +24,19 @@ module PkgAdapter
           
           @plist = ConfigParser.plist plist
 
-          entry = zip_file.glob('Payload/*.app/AppIcon40x40@2x.png').first
+          entry = zip_file.glob('Payload/*.app/AppIcon[6,4]0x[6,4]0@[2,3]x.png').last
+          if !entry
+            raise "can find AppIcon"
+          end
           @app_icon = "#{path}/#{entry.name}"
           dirname = File.dirname(@app_icon)
           FileUtils.mkdir_p dirname
 
           entry.extract @app_icon
+          
+          #uncrush
+          png = PNG.normalize(@app_icon)
+          File.open("#{@app_icon}", 'wb') { |file| file.write(png) } if png
 
         end
     end
@@ -51,7 +58,7 @@ module PkgAdapter
     end
 
     def app_size
-      File.size(@path)/(1024*1024.0)
+      File.size(@path)
     end
 
   end

@@ -72,11 +72,11 @@ module Plist
       @listener = listener
     end
 
-    TEXT       = /([^<]+)/
-    XMLDECL_PATTERN = /<\?xml\s+(.*?)\?>*/m
-    DOCTYPE_PATTERN = /\s*<!DOCTYPE\s+(.*?)(\[|>)/m
-    COMMENT_START = /\A<!--/
-    COMMENT_END = /.*?-->/m
+    TEXT       ||= /([^<]+)/
+    XMLDECL_PATTERN ||= /<\?xml\s+(.*?)\?>*/m
+    DOCTYPE_PATTERN ||= /\s*<!DOCTYPE\s+(.*?)(\[|>)/m
+    COMMENT_START ||= /\A<!--/
+    COMMENT_END ||= /.*?-->/m
 
     def parse
       plist_tags = PTag.mappings.keys.join('|')

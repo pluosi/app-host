@@ -39,6 +39,7 @@ class Pkg < ApplicationRecord
       self.icon.store!(File.new(parser.app_icon))
       self.version = parser.app_version
       self.build = parser.app_build
+      self.size = parser.app_size
       self.save
     end
   end

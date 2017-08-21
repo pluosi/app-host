@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170809074014) do
+ActiveRecord::Schema.define(version: 20170820092824) do
 
   create_table "apps", force: :cascade do |t|
     t.string "name"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20170809074014) do
     t.datetime "updated_at", null: false
     t.integer "plat_id"
     t.string "file"
+    t.integer "size", default: 0
   end
 
   create_table "plats", force: :cascade do |t|
