@@ -1,5 +1,8 @@
 <%=render 'layouts/header'%>
 <div class="container pkgs new">
+  
+  <p id="error"><%= flash[:error] %></p>
+
   <%=form_for @pkg, url:plat_pkgs_path(@plat) do |f|%>
     
     <%= hidden_field_tag "pkg[plat_id]", params[:plat_id] %>

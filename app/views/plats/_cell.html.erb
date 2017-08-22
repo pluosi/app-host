@@ -2,18 +2,18 @@
   <a href="<%=plat_pkg_path(@plat,pkg)%>">
     <div class="cell-container">
       <div class="icon">
-        <img src="http://lorempixel.com/120/120/?<%=rand()%>"/>
+        <%=image_tag(pkg.icon)%>
       </div>
       <div class="detail">
         <span class="title">
-          贷款大师
+          <%=pkg.name%>
           <span class="date-label">
-            2天前
+            <%=time_ago_in_words pkg.created_at %>
           </span>
         </span>
         
         <span class="sub-title">
-          版本 2.90，18.8MB
+          版本 <%=pkg.version%>  18.8MB
         </span>
       </div>
     </div>

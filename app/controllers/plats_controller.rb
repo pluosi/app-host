@@ -35,6 +35,6 @@ class PlatsController < ApplicationController
 
   # # Never trust parameters from the scary internet, only allow the white list through.
   def plat_params
-    params.require(:plat).permit(:name,:app_id,:plat);
+    params.require(:plat).permit(:name,:app_id,:plat,:bundle_id);
   end
 end

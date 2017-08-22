@@ -12,12 +12,21 @@ class PkgsController < ApplicationController
 
   def create
     pkg = Pkg.new(pkg_params)
-    pkg.name = "unset"
 
+    if @plat.bundle_id.present? && pkg.ident != @plat.bundle_id
+      raise "Pkg Bundle Id Validation Error"
+    end
+
+    if pkg.plat != @plat.plat
+      raise "Pkg Plat Validation Error"
+    end
+    
     pkg.save
-
     redirect_to plat_pkg_path @plat, pkg
+  rescue => e
+    redirect_to new_plat_pkg_path(@plat), :flash => { :error => e.message }
   end
+
 
   private
   

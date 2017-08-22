@@ -41,6 +41,10 @@ module PkgAdapter
         end
     end
 
+    def plat
+      'ios'
+    end
+
     def app_name
       @plist.tree["CFBundleDisplayName"]
     end
@@ -59,6 +63,10 @@ module PkgAdapter
 
     def app_size
       File.size(@path)
+    end
+
+    def app_ident
+      @plist.tree["CFBundleIdentifier"]
     end
 
   end
