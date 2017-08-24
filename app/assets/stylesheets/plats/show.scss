@@ -6,10 +6,16 @@
     &>.nav{
       margin-left: 12px;
     }
+    &>.row{
+      margin-left: 0px;
+      margin-right: 0px; 
+    }
     .cell{
       overflow: hidden;
       $icon_with : 48px;
       $padding_size : 15px;
+      padding-left: 0px;
+      padding-right: 0px;
       .divider{
         display: block;
         width: 100%;

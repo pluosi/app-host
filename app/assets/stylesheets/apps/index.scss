@@ -70,6 +70,9 @@
               color: #777;
               font-size: 13px;
               line-height: 24px;
+              /*span{
+                color: #666;
+              }*/
             }
             .halving-line{
               color: #999;
@@ -81,10 +84,16 @@
     @media (max-width: 900px){
       padding-left: 0px;
       padding-right: 0px;
+      &>.row{
+        margin-left: 0px;
+        margin-right: 0px; 
+      }
       .cell{
         overflow: hidden;
         $icon_with : 48px;
         $padding_size : 15px;
+        padding-left: 0px;
+        padding-right: 0px;
         .divider{
           display: block;
           width: 100%;
@@ -141,7 +150,7 @@
               color: #999999;
             }
             .sub-title{
-              color: #666666;
+              color: #9b9b9b;
               font-size: 13px;
             }
             .halving-line{

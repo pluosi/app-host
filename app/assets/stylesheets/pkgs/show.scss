@@ -61,6 +61,31 @@
       font-weight: normal;
     }
   }
+  .extend-info{
+    box-sizing: border-box;
+    padding: 0 12px;
+    width: 100%;
+    margin-bottom: 12px;
+    .wrap{
+      background-color: #F8F8F8;
+      border-radius: 4px;
+      padding: 1px 20px;
+      .open-icon{
+        &>span{
+          display: inline-block;
+          line-height: 34px;
+        }
+        &>a{
+          line-height: 34px;
+          float: right;
+        }
+      }
+      .info{
+        color: #9B9B9B;
+        font-size: 13px;
+      }
+    }
+  }
   .history{
     box-sizing: border-box;
     padding: 0 12px;

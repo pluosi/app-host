@@ -71,6 +71,9 @@ class Pkg < ApplicationRecord
       self.save  
     end
   end
+
+  def ext_info
+  end
   
   
 end

@@ -8,7 +8,7 @@
           <%=image_tag(@pkg.icon)%>
         </div>
         <div class="title"><%=@pkg.name%></div>
-        <div class="info">版本 <%=@pkg.version%>，<%=@pkg.size_mb%>MB，<%=time_ago_in_words @pkg.created_at %> </div>
+        <div class="info">版本 <%=@pkg.version%>，<%=@pkg.size_mb%>MB，<%=@pkg.created_at&.strftime("%Y-%m-%d %R") %> </div>
       </div>
       <a class="download-btn">
         下载
@@ -19,6 +19,21 @@
     <div id="qrcode"></div>
     <label>或者用手机扫描下面的二维码安装</label>
   </div>
+
+  <% @ext_info = @pkg.ext_info %>
+  <% if @ext_info.present? %>
+    <div class="extend-info">
+      <div class="wrap">
+        <div class="open-icon">
+          <span>扩展信息:</span>
+          <a class="glyphicon glyphicon-chevron-down"></a>
+        </div>
+        <p class="info" style="display: none;">
+         <%=@ext_info%>
+        </p>  
+      </div>
+    </div>
+  <% end %>
 
   <div class="history">
     <div class="wrap">
@@ -60,7 +75,17 @@
 </div>
 
 <script type="text/javascript">
-  new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
+  $(function(){
+    $('#qrcode').empty();
+    new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
+    $(".open-icon>a").click(function(event) {
+      $(".extend-info>.wrap>.info").toggle()
+    });
+
+  })();
+
+  
+
 </script>
 
 

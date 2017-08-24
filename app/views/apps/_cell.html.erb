@@ -21,14 +21,14 @@
         <div class="halving-line">---</div>
 
         <span class="sub-title">
-          包总数：<%=app.pkgs.count%>
+          包总数：<span><%=app.pkgs.count%></span>
         </span> 
         <span class="sub-title">
-          渠道数：<%=app.plats.count%>
+          渠道数：<span><%=app.plats.count%></span>
         </span>
         <% if app.pkgs.last.present? %>
           <span class="sub-title visible-md visible-lg">
-            最新包：<%=app.pkgs.last.build%> <%=app.pkgs.last.plat&.name%>
+            最新包：<span><%=app.pkgs.last.build%> <%=app.pkgs.last.plat&.name%></span>
           </span>
         <% end %>
        
