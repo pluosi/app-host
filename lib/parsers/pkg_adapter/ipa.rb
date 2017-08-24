@@ -45,16 +45,20 @@ module PkgAdapter
       'ios'
     end
 
+    def app_uniq_key
+      :build
+    end
+
     def app_name
-      @plist.tree["CFBundleDisplayName"]
+      @plist["CFBundleDisplayName"] || @plist["CFBundleName"]
     end
 
     def app_version
-      @plist.tree["CFBundleShortVersionString"]
+      @plist["CFBundleShortVersionString"]
     end
 
     def app_build
-      @plist.tree["CFBundleVersion"]
+      @plist["CFBundleVersion"]
     end
 
     def app_icon
@@ -66,7 +70,7 @@ module PkgAdapter
     end
 
     def app_ident
-      @plist.tree["CFBundleIdentifier"]
+      @plist["CFBundleIdentifier"]
     end
 
   end
@@ -78,7 +82,11 @@ module PkgAdapter
     end
 
     def self.plist(stream)
-      Bplist.parse(stream)
+      if stream[0..5] == "bplist"
+        Bplist.parse(stream).tree
+      else
+        Plist.parse_xml(stream)
+      end
     end
   end
 end

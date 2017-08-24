@@ -1,20 +1,21 @@
 .app.index{
   &.app-host-container{
-    margin-top: 20px;
     @media (min-width: 901px){
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      align-content: flex-start;
+      margin-top: 20px;
       .cell{
         overflow: hidden;
         $icon_with : 100px;
         margin-bottom: 20px;
+        position: relative;
         &.new{
           .cell-container{
             border: solid 1px #337ab7;
           }
+        }
+        .actions{
+          position: relative;
+          top: -32px;
+          right: 12px;
         }
         .divider{
           display: none;
@@ -35,12 +36,25 @@
             img{
               width: 100%;
             }
+            .text-icon{
+              width: 100%;
+              height: 100%;
+              background-color: #03A3FC;
+              span{
+                display: block;
+                width: 100%;
+                text-align: center;
+                line-height: $icon_with;
+                font-size: 40px;
+                color: #fff;
+              }
+            }
           }
           .detail{
             display: block;
-            width:-moz-calc(100% - 48px); 
+ /*           width:-moz-calc(100% - 48px); 
             width:-webkit-calc(100% - 48px); 
-            width: calc(100% - 48px);
+            width: calc(100% - 48px);*/
             .title{
               display: block;
               width: 100%;
@@ -49,11 +63,16 @@
             .date-label{
               float: right;
               font-size: 13px;
-              color: #999999;
+              color: #999;
             }
             .sub-title{
-              color: #666666;
+              display: block;
+              color: #777;
               font-size: 13px;
+              line-height: 24px;
+            }
+            .halving-line{
+              color: #999;
             }
           }
         }
@@ -87,6 +106,20 @@
             img{
               width: 100%;
             }
+            .text-icon{
+              width: 100%;
+              height: 100%;
+              background-color: #03A3FC;
+              span{
+                display: block;
+                width: 100%;
+                text-align: center;
+                line-height: $icon_with;
+                font-size: 28px;
+                color: #fff;
+                font-weight: lighter;
+              }
+            }
           }
           .detail{
             display: block;
@@ -110,6 +143,9 @@
             .sub-title{
               color: #666666;
               font-size: 13px;
+            }
+            .halving-line{
+              display: none;
             }
           }
         }

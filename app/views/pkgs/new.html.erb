@@ -1,17 +1,19 @@
 <%=render 'layouts/header'%>
 <div class="container pkgs new">
   
-  <p id="error"><%= flash[:error] %></p>
+  <% if flash[:error].present? %>
+    <br>
+    <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>  
+  <% end %>
 
   <%=form_for @pkg, url:plat_pkgs_path(@plat) do |f|%>
     
     <%= hidden_field_tag "pkg[plat_id]", params[:plat_id] %>
     <%= hidden_field_tag "pkg[app_id]", @plat.app_id %>
-    <div class="title"><span>上传</span></div>
+    <div class="title"><span>提交包</span></div>
     <div class="form-group">
-      <label for="file">包：</label>
       <%= f.file_field :file, required:true, accept:".ipa" %>
     </div>
-    <%=f.submit @pkg.new_record? ? "新建" : "保存", class:"btn btn-primary ui-plat"%>
+    <%=f.submit "上传", class:"btn btn-primary ui-plat"%>
   <%end%>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170822052125) do
+ActiveRecord::Schema.define(version: 20170823163040) do
 
   create_table "apps", force: :cascade do |t|
     t.string "name"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20170822052125) do
     t.integer "app_id"
     t.string "name"
     t.string "icon"
-    t.string "plat"
+    t.string "plat_name"
     t.string "ident"
     t.string "version"
     t.string "build"
@@ -40,17 +40,19 @@ ActiveRecord::Schema.define(version: 20170822052125) do
     t.integer "plat_id"
     t.string "file"
     t.integer "size", default: 0
+    t.string "uniq_key"
   end
 
   create_table "plats", force: :cascade do |t|
     t.string "name"
-    t.string "plat"
+    t.string "plat_name"
     t.integer "app_id"
     t.string "pkg_name"
     t.integer "packages_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "bundle_id"
+    t.boolean "pkg_uniq", default: true
   end
 
 end

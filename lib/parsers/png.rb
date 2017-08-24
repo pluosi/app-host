@@ -78,16 +78,16 @@ module PNG
 
             # With filter method 0, the only one currently defined, we have to prepend a filter type byte to each scan line.
             # Currently, we just copy what was there before (though this could be wrong).
-            new_data += uncompressed[i]
+            new_data << uncompressed[i]
 
             (0...@width).each do |x|
-              i = new_data.length
+              j = new_data.length
 
               # Swap BGRA to RGBA
-              new_data += uncompressed[i + 2]  # Red
-              new_data += uncompressed[i + 1]  # Green
-              new_data += uncompressed[i + 0]  # Blue
-              new_data += uncompressed[i + 3]  # Alpha
+              new_data << uncompressed[j + 2]  # Red
+              new_data << uncompressed[j + 1]  # Green
+              new_data << uncompressed[j + 0]  # Blue
+              new_data << uncompressed[j + 3]  # Alpha
             end
           end
 
@@ -113,10 +113,10 @@ module PNG
         next if chunk['type'] == 'CgBI'
         logger.debug "Writing #{chunk['type']}" if logger
 
-        out += [chunk['length']].pack("L>")
-        out += chunk['type']
-        out += chunk['data']
-        out += [chunk['crc']].pack("L>")
+        out << [chunk['length']].pack("L>")
+        out << chunk['type']
+        out << chunk['data']
+        out << [chunk['crc']].pack("L>")
       end
       out
     end  # File.open

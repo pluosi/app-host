@@ -1,6 +1,12 @@
 <%=render 'layouts/header'%>
 
 <div class="container plat show app-host-container">
+
+  <div class="visible-md visible-lg pull-right">
+    <%=link_to '删除', app_plat_path(@app, @plat), data: {:confirm => 'Are you sure?'}, class:"btn-danger", :method => :delete %>
+    <%=link_to '修改', edit_app_plat_path(@app, @plat), class:"btn-info" %>
+  </div>
+
   <ul class="nav nav-tabs">
       <%@plats.each_with_index do |plat,index|%>
         <% if plat.id == params[:id].to_i %>
@@ -16,6 +22,11 @@
     <%=render partial: "cell", collection: @pkgs, as: :pkg %>
   </div>
 
-  <%=link_to '上传', new_plat_pkg_path(@plat), class:"btn btn-primary ui-plat visible-md visible-lg" %>
+  <br>
+  
+
+  <div class="visible-md visible-lg pull-right">
+    <%=link_to '上传', new_plat_pkg_path(@plat), class:"btn btn-primary ui-plat" %>
+  </div>
 
 </div>

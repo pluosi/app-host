@@ -6,7 +6,7 @@
 #  app_id     :integer
 #  name       :string
 #  icon       :string
-#  plat       :string
+#  plat_name  :string
 #  ident      :string
 #  version    :string
 #  build      :string
@@ -15,6 +15,7 @@
 #  plat_id    :integer
 #  file       :string
 #  size       :integer          default(0)
+#  uniq_key   :string
 #
 
 class Pkg < ApplicationRecord
@@ -22,13 +23,14 @@ class Pkg < ApplicationRecord
   attr_accessor :app_icon
 
   belongs_to :app
+  belongs_to :plat
 
   validates_presence_of :file
 
-  mount_uploader :icon, IconUploader
-  mount_uploader :file, PkgUploader
+  mount_uploader :icon, IconUploader, :dependent => :destroy
+  mount_uploader :file, PkgUploader, :dependent => :destroy
 
-  enum plat: {
+  enum plat_name: {
     ios: 'ios',
     android: 'android'
   }
@@ -40,6 +42,14 @@ class Pkg < ApplicationRecord
     parsing
   end
 
+  def uniq?
+    !self.class.where({plat_id:plat_id,self.uniq_key.to_sym => self[self.uniq_key.to_sym]}).exists?
+  end
+
+  def size_mb
+   '%.1f' % (size / (1024*1024.0))
+  end
+
   def parsing
     if file.path
       parser = PkgAdapter.pkg_adapter(file.path)
@@ -49,7 +59,9 @@ class Pkg < ApplicationRecord
       self.build = parser.app_build
       self.size = parser.app_size
       self.ident = parser.app_ident
-      self.plat = parser.plat
+      self.plat_name = parser.plat
+
+      self.uniq_key = parser.app_uniq_key
     end
   end
 

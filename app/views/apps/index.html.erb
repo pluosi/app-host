@@ -7,7 +7,9 @@
 <!-- <br>
 <hr> -->
 <div class="row">
-<%=render "cell_add" %>
+  <div class="visible-md visible-lg">
+    <%=render "cell_add" %>
+  </div>
   <%= render partial: "cell", collection: @apps, as: :app %>
 </div>
 

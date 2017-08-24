@@ -19,9 +19,13 @@
 
 class App < ApplicationRecord
 
-  has_many :pkgs
-  has_many :plats
+  has_many :pkgs, :dependent => :destroy
+  has_many :plats, :dependent => :destroy
 
   validates_uniqueness_of :name, :allow_blank => false
+
+  def icon
+    pkgs.last&.icon
+  end
   
 end

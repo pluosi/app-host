@@ -33,5 +33,8 @@ module PkgAdapter
     def app_ident
     end
 
+    def app_uniq_key
+    end
+
   end
 end

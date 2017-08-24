@@ -15,7 +15,21 @@ class AppsController < ApplicationController
 
   def create
     app = App.create(app_params)
-    redirect_to app
+    redirect_to root_path
+  end
+
+  def edit
+    render 'new'
+  end
+
+  def update
+    @app.update app_params
+    redirect_to root_path
+  end
+
+  def destroy
+    @app.destroy!
+    redirect_to root_path
   end
 
   private

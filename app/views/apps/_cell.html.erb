@@ -1,22 +1,46 @@
 <div class="col-md-4 cell">
+
   <a href="<%=app_plats_path(app)%>">
     <div class="cell-container">
       <div class="icon">
-        <img src="http://lorempixel.com/120/120/?<%=rand()%>"/>
+        <% if app.icon %>
+          <%=image_tag(app.icon)%>  
+        <% else %>
+          <div class="text-icon"><span><%=app.name[0,1]%></span></div>
+        <% end %>
       </div>
       <div class="detail">
         <span class="title">
           <%=app.name%>
           <span class="date-label">
-            <%=time_ago_in_words(app.updated_at)%>
+            <% if app.pkgs.last.present? %>
+              <%=time_ago_in_words(app.pkgs.last.updated_at)%>
+            <% end %>
           </span>
         </span>
-        
+        <div class="halving-line">---</div>
+
         <span class="sub-title">
-          版本 2.90，18.8MB
+          包总数：<%=app.pkgs.count%>
+        </span> 
+        <span class="sub-title">
+          渠道数：<%=app.plats.count%>
         </span>
+        <% if app.pkgs.last.present? %>
+          <span class="sub-title visible-md visible-lg">
+            最新包：<%=app.pkgs.last.build%> <%=app.pkgs.last.plat&.name%>
+          </span>
+        <% end %>
+       
       </div>
+
     </div>
     <div class="divider"></div>
   </a>
+
+  <div class="actions visible-md visible-lg pull-right">
+    <%=link_to "", app_path(app), data: {:confirm => 'Are you sure?'}, class:"glyphicon glyphicon-remove", :method => :delete %>
+    <%=link_to "", edit_app_path(app), class:"glyphicon glyphicon-cog" %>
+  </div>
+  
 </div>

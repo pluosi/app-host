@@ -3,6 +3,9 @@
     padding-left: 0px;
     padding-right: 0px;
     margin-top: 4px;
+    &>.nav{
+      margin-left: 12px;
+    }
     .cell{
       overflow: hidden;
       $icon_with : 48px;
@@ -51,6 +54,16 @@
           .sub-title{
             color: #666666;
             font-size: 13px;
+          }
+          .delete_btn{
+            margin-top: 2px;
+            margin-right: $padding_size;
+            font-size: 12px;
+          }
+          @media (max-width: 900px){
+            .delete_btn{
+              display: none;
+            }
           }
         }
       }

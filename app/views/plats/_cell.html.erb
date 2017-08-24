@@ -13,8 +13,10 @@
         </span>
         
         <span class="sub-title">
-          版本 <%=pkg.version%>  18.8MB
+          版本 <%=pkg.version%>，<%=pkg.size_mb%>MB
         </span>
+
+        <%=link_to '删除', plat_pkg_path(pkg.plat, pkg), class: "btn-danger delete_btn pull-right", data: {:confirm => 'Are you sure?'}, :method => :delete %>
       </div>
     </div>
     <div class="divider"></div>

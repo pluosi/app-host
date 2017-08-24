@@ -8,7 +8,7 @@
           <%=image_tag(@pkg.icon)%>
         </div>
         <div class="title"><%=@pkg.name%></div>
-        <div class="info">版本 <%=@pkg.version%>  18.8MB  <%=time_ago_in_words @pkg.created_at %> </div>
+        <div class="info">版本 <%=@pkg.version%>，<%=@pkg.size_mb%>MB，<%=time_ago_in_words @pkg.created_at %> </div>
       </div>
       <a class="download-btn">
         下载
@@ -19,7 +19,6 @@
     <div id="qrcode"></div>
     <label>或者用手机扫描下面的二维码安装</label>
   </div>
-
 
   <div class="history">
     <div class="wrap">
