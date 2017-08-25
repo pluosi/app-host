@@ -7,6 +7,18 @@
         $icon_with : 100px;
         margin-bottom: 20px;
         position: relative;
+        &:hover{
+          transform:translate(0,-2px);
+          -webkit-transform:translate(0,-2px);
+          -moz-transform:translate(0,-2px);
+          -o-transform:translate(0,-2px);
+          -ms-transform:translate(0,-2px);
+          transition: transform .2s ease-in-out;
+          .cell-container{
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            transition: box-shadow 0.2s ease-in-out;  
+          }
+        }
         &.new{
           .cell-container{
             border: solid 1px #337ab7;

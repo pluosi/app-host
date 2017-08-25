@@ -47,6 +47,7 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    browser (2.3.0)
     builder (3.2.3)
     byebug (9.0.6)
     capybara (2.14.4)
@@ -70,6 +71,10 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    config (1.2.1)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.0, >= 1.0.1)
+    deep_merge (1.0.1)
     erubi (1.6.1)
     execjs (2.7.0)
     ffi (1.9.18)
@@ -192,10 +197,12 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass
+  browser
   byebug
   capybara (~> 2.13)
   carrierwave
   coffee-rails (~> 4.2)
+  config
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

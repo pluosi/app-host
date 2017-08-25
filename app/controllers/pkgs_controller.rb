@@ -1,9 +1,24 @@
 class PkgsController < ApplicationController
-  before_action :set_plat, only: [:show,:new,:create]
+  before_action :set_plat, only: [:new,:create]
 
 
   def show
     @pkg = Pkg.find params[:id]
+    history = Pkg.where("id < ?",@pkg.id).where(plat_id:@pkg.plat_id).id_desc
+    history.each do |e|
+      @history ||= {}
+      time_str = e.created_at.strftime("%Y-%m-%d")
+      @history[time_str] ||= []
+      @history[time_str] << e
+    end
+    @download_url = browser.device.mobile? ? @pkg.download_url_for_mobile : @pkg.download_url
+  end
+
+  #ios install manifest file
+  def manifest
+    @pkg = Pkg.find params[:id]
+    stream = render_to_string(:template=>"pkgs/manifest.xml" )  
+    render xml: stream
   end
 
   def new
@@ -26,7 +41,7 @@ class PkgsController < ApplicationController
     end
     
     pkg.save
-    redirect_to plat_pkg_path @plat, pkg
+    redirect_to pkg_path pkg
   rescue => e
     redirect_to new_plat_pkg_path(@plat), :flash => { :error => e.message }
   end

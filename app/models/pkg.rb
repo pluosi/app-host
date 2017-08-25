@@ -74,6 +74,14 @@ class Pkg < ApplicationRecord
 
   def ext_info
   end
+
+  def download_url_for_mobile
+    "itms-services://?action=download-manifest&url=#{Settings.PROTOCOL}#{Settings.HOST}#{Rails.application.routes.url_helpers.manifest_pkg_path(self)}.plist"  
+  end
+
+  def download_url
+    "#{Settings.PROTOCOL}#{Settings.HOST}#{self.file}"
+  end
   
   
 end

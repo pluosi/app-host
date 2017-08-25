@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   resources :plats do
     resources :pkgs
   end
+
+  resources :pkgs, only:[:show] do
+    member do 
+      get :manifest
+    end
+  end
   
   # , only:[:index,:show,:create,:new]
 

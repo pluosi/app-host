@@ -13,12 +13,10 @@ class IconUploader < CarrierWave::Uploader::Base
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
-
  
   def default_url(*args)
-    "/default-user.png"
+    "/default_app_icon.png"
   end
-
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

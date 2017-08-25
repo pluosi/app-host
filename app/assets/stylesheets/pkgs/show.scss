@@ -104,9 +104,12 @@
           color: #9B9B9B;
           font-weight: normal;
         }
-        li{
+        li>a{
           color: #9B9B9B;
           font-size: 13px;
+          &:hover{
+            text-decoration: underline;
+          }
         }
       }
     }

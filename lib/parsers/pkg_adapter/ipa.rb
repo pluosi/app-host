@@ -25,19 +25,19 @@ module PkgAdapter
           @plist = ConfigParser.plist plist
 
           entry = zip_file.glob('Payload/*.app/AppIcon[6,4]0x[6,4]0@[2,3]x.png').last
-          if !entry
-            raise "can find AppIcon"
+          if entry
+            @app_icon = "#{path}/#{entry.name}"
+            dirname = File.dirname(@app_icon)
+            FileUtils.mkdir_p dirname
+
+            entry.extract @app_icon
+            
+            #uncrush
+            png = PNG.normalize(@app_icon)
+            File.open("#{@app_icon}", 'wb') { |file| file.write(png) } if png
+          else
+            p "can find AppIcon"
           end
-          @app_icon = "#{path}/#{entry.name}"
-          dirname = File.dirname(@app_icon)
-          FileUtils.mkdir_p dirname
-
-          entry.extract @app_icon
-          
-          #uncrush
-          png = PNG.normalize(@app_icon)
-          File.open("#{@app_icon}", 'wb') { |file| file.write(png) } if png
-
         end
     end
 
