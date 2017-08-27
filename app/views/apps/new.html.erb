@@ -1,7 +1,7 @@
 <%=render 'layouts/header'%>
 
 <div class="container app new">
-  <%=form_for @app do |f|%>
+  <%=form_for @app, :html => { class: "app_form" } do |f|%>
     <div class="title"><span>新建应用</span></div>
       <div class="form-group">
         <label for="app_name">应用名称*：</label>

@@ -2,11 +2,14 @@ class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy, :comments]
 
   def index
+    unless User.admin.exists?
+      redirect_to new_user_path and return
+    end
     @apps = App.all
   end
 
   def show
-    # redirect_to app_plats_path @app
+    redirect_to app_plats_path @app
   end
 
   def new

@@ -40,9 +40,12 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
+    apktools (0.7.2)
+      rubyzip (~> 1.2.1)
     arel (8.0.0)
     autoprefixer-rails (6.5.0.2)
       execjs
+    bcrypt (3.1.11)
     bindex (0.5.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
@@ -50,6 +53,7 @@ GEM
     browser (2.3.0)
     builder (3.2.3)
     byebug (9.0.6)
+    cancancan (2.0.0)
     capybara (2.14.4)
       addressable
       mime-types (>= 1.16)
@@ -196,9 +200,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  apktools
+  bcrypt (~> 3.1.7)
   bootstrap-sass
   browser
   byebug
+  cancancan (~> 2.0)
   capybara (~> 2.13)
   carrierwave
   coffee-rails (~> 4.2)

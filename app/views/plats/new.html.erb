@@ -1,7 +1,7 @@
 <%=render 'layouts/header'%>
 
 <div class="container plat new">
-    <%=form_for @plat, :url => @plat.persisted? ? app_plat_path(@plat.app,@plat) : app_plats_path, :html => { :method => @plat.new_record? ? "post" : "put" } do |f|%>
+    <%=form_for @plat, :url => @plat.persisted? ? app_plat_path(@plat.app,@plat) : app_plats_path, :html => { :method => @plat.new_record? ? "post" : "put", class: "app_form" } do |f|%>
 
     <%= hidden_field_tag "plat[app_id]", @plat.app_id %>
 

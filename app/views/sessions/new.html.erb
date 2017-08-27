@@ -1,0 +1,24 @@
+<%=render 'layouts/header'%>
+
+<div class="container user new">
+  
+  <%=render 'comoms/alert'%>
+
+  <%=form_for :session, url: sessions_path, html:{class:"app_form"} do |f|%>
+    <div class="title">
+      <span>
+        登录
+      </span>
+    </div>
+      <div class="form-group">
+        <label for="app_name">邮箱：</label>
+        <%= f.text_field :email, class:"form-control", required:true %>
+      </div>
+      <div class="form-group">
+        <label for="app_name">密码：</label>
+        <%= f.password_field :password, class:"form-control", required:true %>
+      </div>
+      
+    <%=f.submit "登录", class:"btn btn-primary ui-plat"%>
+  <%end%>
+</div>

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :plats
   end
 
+  resources :users
+
   resources :plats do
     resources :pkgs
   end
@@ -14,6 +16,8 @@ Rails.application.routes.draw do
       get :manifest
     end
   end
+
+  resources :sessions, only: [:new, :create, :destroy]
   
   # , only:[:index,:show,:create,:new]
 

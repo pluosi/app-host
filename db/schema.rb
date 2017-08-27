@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170823163040) do
+ActiveRecord::Schema.define(version: 20170827141031) do
 
   create_table "apps", force: :cascade do |t|
     t.string "name"
@@ -53,6 +53,17 @@ ActiveRecord::Schema.define(version: 20170823163040) do
     t.datetime "updated_at", null: false
     t.string "bundle_id"
     t.boolean "pkg_uniq", default: true
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "role", default: "user"
+    t.string "password_digest"
+    t.string "remember_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email"
+    t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
 end

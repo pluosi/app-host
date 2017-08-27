@@ -1,12 +1,9 @@
 <%=render 'layouts/header'%>
 <div class="container pkgs new">
   
-  <% if flash[:error].present? %>
-    <br>
-    <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>  
-  <% end %>
+  <%=render 'comoms/alert'%>
 
-  <%=form_for @pkg, url:plat_pkgs_path(@plat) do |f|%>
+  <%=form_for @pkg, url:plat_pkgs_path(@plat), :html => { class: "app_form" } do |f|%>
     
     <%= hidden_field_tag "pkg[plat_id]", params[:plat_id] %>
     <%= hidden_field_tag "pkg[app_id]", @plat.app_id %>
