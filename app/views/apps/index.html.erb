@@ -7,9 +7,12 @@
 <!-- <br>
 <hr> -->
 <div class="row">
-  <div class="visible-md visible-lg">
-    <%=render "cell_add" %>
-  </div>
+  <% if can? :create, App %>
+    <div class="visible-md visible-lg">
+      <%=render "cell_add" %>
+    </div>
+  <% end %>
+  
   <%= render partial: "cell", collection: @apps, as: :app %>
 </div>
 

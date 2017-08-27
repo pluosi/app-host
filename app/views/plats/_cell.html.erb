@@ -21,7 +21,11 @@
           <a class="download-btn" href="<%=download_url%>">
             下载
           </a>
-          <%=button_to '删除', plat_pkg_path(pkg.plat, pkg), form_class: "delete_btn", class:"btn-danger", data: {:confirm => 'Are you sure?'}, :method => :delete %>
+
+          <% if can? :destroy, pkg %>
+            <%=button_to '删除', plat_pkg_path(pkg.plat, pkg), form_class: "delete_btn", class:"btn-danger", data: {:confirm => 'Are you sure?'}, :method => :delete %>
+          <% end %>
+          
         </div>
       </div>
     </div>

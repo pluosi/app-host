@@ -21,11 +21,13 @@ class PlatsController < ApplicationController
   end
 
   def create
-    plat = Plat.create(plat_params)
+    authorize!(:create, Plat)
+    plat = Plat.create(plat_params.merge(user_id:current_user.id))
     redirect_to app_plat_path @app, plat
   end
 
   def destroy
+    authorize!(:destroy, @plat)
     @plat.destroy!
     @plats = Plat.where(app_id:params[:app_id])
     if @plats.first
@@ -40,6 +42,7 @@ class PlatsController < ApplicationController
   end
 
   def update
+    authorize!(:update, @plat)
     @plat.update(plat_params)
     redirect_to app_plat_path @plat.app, @plat
   end

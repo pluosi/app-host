@@ -39,8 +39,14 @@
   </a>
 
   <div class="actions visible-md visible-lg pull-right">
-    <%=link_to "", app_path(app), data: {:confirm => 'Are you sure?'}, class:"glyphicon glyphicon-remove", :method => :delete %>
-    <%=link_to "", edit_app_path(app), class:"glyphicon glyphicon-cog" %>
+    <% if can? :destroy, app %>
+      <%=link_to "", app_path(app), data: {:confirm => 'Are you sure?'}, class:"glyphicon glyphicon-remove", :method => :delete %>
+    <% end %>
+    
+    <% if can? :update, app %>
+      <%=link_to "", edit_app_path(app), class:"glyphicon glyphicon-cog" %>
+    <% end %>
+    
   </div>
   
 </div>

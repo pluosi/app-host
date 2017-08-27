@@ -16,7 +16,11 @@
 
 class Plat < ApplicationRecord
   has_many :pkgs, :dependent => :destroy
+  
   belongs_to :app
+  belongs_to :user
+
+  validates_presence_of :user_id
 
   enum plat_name: {
     ios: 'ios',

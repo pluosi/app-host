@@ -3,8 +3,15 @@
 <div class="container plat show app-host-container">
 
   <div class="visible-md visible-lg pull-right">
-    <%=link_to '删除', app_plat_path(@app, @plat), data: {:confirm => 'Are you sure?'}, class:"btn-danger", :method => :delete %>
-    <%=link_to '修改', edit_app_plat_path(@app, @plat), class:"btn-info" %>
+
+    <% if can? :destroy, @plat %>
+      <%=link_to '删除', app_plat_path(@app, @plat), data: {:confirm => 'Are you sure?'}, class:"btn-danger", :method => :delete %>
+    <% end %>
+
+    <% if can? :update, @plat %>
+      <%=link_to '修改', edit_app_plat_path(@app, @plat), class:"btn-info" %>
+    <% end %>
+
   </div>
 
   <ul class="nav nav-tabs">
@@ -15,7 +22,10 @@
           <li role="presentation"><%=link_to plat.name, app_plat_path(@app,plat) %></li>
         <% end %>
       <% end %>
-      <li role="presentation" class="visible-md visible-lg"><%=link_to '+', new_app_plat_path %></li>
+      <% if can? :create, Plat %>
+        <li role="presentation" class="visible-md visible-lg"><%=link_to '+', new_app_plat_path %></li>
+      <% end %>
+      
   </ul>
 
   <div class="row ">
@@ -23,8 +33,10 @@
   </div>
   <br>
 
-  <div class="visible-md visible-lg pull-right">
-    <%=link_to '上传', new_plat_pkg_path(@plat), class:"btn btn-primary ui-plat" %>
-  </div>
+  <% if can? :create, Pkg %>
+    <div class="visible-md visible-lg pull-right">
+      <%=link_to '上传', new_plat_pkg_path(@plat), class:"btn btn-primary ui-plat" %>
+    </div>
+  <% end %>
 
 </div>

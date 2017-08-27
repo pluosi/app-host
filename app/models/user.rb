@@ -1,7 +1,25 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  email           :string
+#  role            :string           default("user")
+#  password_digest :string
+#  remember_token  :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ApplicationRecord
   has_secure_password
   
+  has_many :apps, :dependent => :destroy
+  has_many :plats, :dependent => :destroy
+  has_many :pkgs, :dependent => :destroy
+
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
+  validates_uniqueness_of :email, :allow_blank => false
 
   before_save { self.email = email.downcase }
   before_create :create_remember_token

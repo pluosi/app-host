@@ -22,7 +22,10 @@ class App < ApplicationRecord
   has_many :pkgs, :dependent => :destroy
   has_many :plats, :dependent => :destroy
 
+  belongs_to :user
+
   validates_uniqueness_of :name, :allow_blank => false
+  validates_presence_of :user_id
 
   def icon
     pkgs.last&.icon

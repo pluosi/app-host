@@ -17,7 +17,8 @@ class AppsController < ApplicationController
   end
 
   def create
-    app = App.create(app_params)
+    authorize!(:create, App)
+    app = App.create(app_params.merge(user_id:current_user.id))
     redirect_to root_path
   end
 
@@ -26,11 +27,13 @@ class AppsController < ApplicationController
   end
 
   def update
+    authorize!(:update, @app)
     @app.update app_params
     redirect_to root_path
   end
 
   def destroy
+    authorize!(:destroy, @app)
     @app.destroy!
     redirect_to root_path
   end

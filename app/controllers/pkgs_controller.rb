@@ -26,7 +26,8 @@ class PkgsController < ApplicationController
   end
 
   def create
-    pkg = Pkg.new(pkg_params)
+    authorize!(:create, Pkg)
+    pkg = Pkg.new(pkg_params.merge(user_id:current_user.id))
     
     if @plat.bundle_id.present? && pkg.ident != @plat.bundle_id
       raise "Pkg Bundle Id Validation Fail"
@@ -48,6 +49,7 @@ class PkgsController < ApplicationController
 
   def destroy
     pkg = Pkg.find params[:id]
+    authorize!(:destroy, pkg)
     pkg.destroy!
     redirect_to app_plat_path pkg.app, pkg.plat
   end

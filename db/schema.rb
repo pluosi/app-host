@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170827141031) do
+ActiveRecord::Schema.define(version: 20170827200431) do
 
   create_table "apps", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20170827141031) do
     t.integer "channels_count", default: 0
     t.integer "palts_count", default: 0
     t.integer "packages_count", default: 0
+    t.integer "user_id"
   end
 
   create_table "pkgs", force: :cascade do |t|
@@ -41,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170827141031) do
     t.string "file"
     t.integer "size", default: 0
     t.string "uniq_key"
+    t.integer "user_id"
   end
 
   create_table "plats", force: :cascade do |t|
@@ -53,6 +55,7 @@ ActiveRecord::Schema.define(version: 20170827141031) do
     t.datetime "updated_at", null: false
     t.string "bundle_id"
     t.boolean "pkg_uniq", default: true
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

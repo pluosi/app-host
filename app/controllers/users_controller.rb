@@ -8,10 +8,9 @@ class UsersController < ApplicationController
 
   def create
     user = User.new user_params
-    if User.admin.exists?
-      byebug
+    if !User.admin.exists? || authorize!(:create, user)
+      user.save
     end
-    user.save
     redirect_to root_path
   end
 
