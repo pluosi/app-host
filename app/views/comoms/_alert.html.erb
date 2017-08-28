@@ -1,4 +1,7 @@
 <% if flash[:error].present? %>
   <br>
   <div class="alert alert-danger" role="alert"><%= flash[:error] %></div>  
+<% elsif flash[:alert].present? %>
+  <br>
+  <div class="alert alert-success" role="alert"><%= flash[:alert] %></div>  
 <% end %>

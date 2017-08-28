@@ -21,8 +21,11 @@ class User < ApplicationRecord
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   validates_uniqueness_of :email, :allow_blank => false
 
+  # validates_length_of :password, :minimum => 4
+
   before_save { self.email = email.downcase }
   before_create :create_remember_token
+  before_create :create_api_token
 
   enum role: {
     admin: 'admin',
@@ -37,10 +40,17 @@ class User < ApplicationRecord
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+  def api_token!
+    create_api_token && self.save
+  end
 
   private
   def create_remember_token
     self.remember_token = User.encrypt(User.new_remember_token)
+  end
+
+  def create_api_token
+    self.api_token = User.encrypt(User.new_remember_token)
   end
 
 end

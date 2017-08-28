@@ -9,9 +9,43 @@ class UsersController < ApplicationController
   def create
     user = User.new user_params
     if !User.admin.exists? || authorize!(:create, user)
-      user.save
+      unless user.save
+        flash[:error] = user.errors.full_messages
+        redirect_to new_user_path and return
+      end
     end
     redirect_to root_path
+  end
+
+  def show
+    unless signed_in? && params[:id].to_i == current_user.id
+      redirect_to root_path
+    end
+    @user = User.find(params[:id])
+  end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = current_user
+    @user.password = params[:user][:password]
+    if @user.save
+      flash[:alert] = '修改成功'  
+      redirect_to root_path
+    else
+      flash[:error] = @user.errors.full_messages
+      redirect_to edit_user_path(@user)
+    end
+  end
+
+  def api_token
+  end
+
+  def refresh_api_token
+    current_user.api_token!
+    redirect_to api_token_user_path(current_user)
   end
 
   private

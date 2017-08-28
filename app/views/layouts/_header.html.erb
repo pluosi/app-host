@@ -1,18 +1,46 @@
 <header class="navbar navbar-static-top app-host-nav theme-gray" id="top">
   <div class="container">
     <div class="navbar-header">
-      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#app-navbar" aria-controls="app-navbar" aria-expanded="false">
+      <!-- <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#app-navbar" aria-controls="app-navbar" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>
+      </button> -->
       <a href="/" class="navbar-brand">APP HOST</a>
     </div>
-    <!-- <nav id="app-navbar" class="navbar-collapse collapse">
+    <nav id="app-navbar" class="navbar-collapse visible-md visible-lg">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="<%=new_app_path%>">+</a></li>
+        <!-- <li><a href="#">UDID</a></li> -->
+        <% if signed_in? %>
+          <li>
+            <a data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" href="<%=user_path(current_user)%>"><%=current_user.email%></a>
+            <ul class="dropdown-menu">
+
+              <% if can? :create, User %>
+                <li>
+                  <%=link_to '添加用户', new_user_path %>
+                </li>
+              <% end %>
+
+              <li>
+                <%=link_to '修改密码', edit_user_path(current_user) %>
+              </li>
+              <li>
+                <%=link_to 'ApiToken', api_token_user_path(current_user) %>
+              </li>
+              <li>
+                <%=link_to '登出', session_path(current_user), form_class: "delete_btn", data: {:confirm => 'Are you sure?'}, :method => :delete %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li><a href="<%=new_session_path%>">管理</a></li>
+        <% end %>
       </ul>
-    </nav> -->
+    </nav>
+
+
+
   </div>
 </header>

@@ -15,6 +15,7 @@
 #  channels_count :integer          default(0)
 #  palts_count    :integer          default(0)
 #  packages_count :integer          default(0)
+#  user_id        :integer
 #
 
 class App < ApplicationRecord

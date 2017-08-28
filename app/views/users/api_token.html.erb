@@ -1,0 +1,14 @@
+<%=render 'layouts/header'%>
+
+<div class="container user api_token">
+  <h3>Api上传方式</h3>
+  <hr>
+  
+  <h4>ApiToken</h4>
+   <%=current_user.api_token%> <%=link_to '',api_token_user_path(current_user),class:"glyphicon glyphicon-refresh", data: {:confirm => 'Are you sure?'},:method => :put%>
+  <hr>
+  
+  <h4>USEGAE:</h4>
+  curl --form plat_id=<span class="alert-danger">34</span> --form token=<span class="alert-danger"><%=current_user.api_token%></span> --form file=<span class="alert-danger">@/xx/xx.ipa</span> <%="#{Settings.PROTOCOL}#{Settings.HOST}"%>/api/pkgs
+
+</div>

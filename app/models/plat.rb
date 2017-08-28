@@ -12,6 +12,7 @@
 #  updated_at     :datetime         not null
 #  bundle_id      :string
 #  pkg_uniq       :boolean          default(TRUE)
+#  user_id        :integer
 #
 
 class Plat < ApplicationRecord

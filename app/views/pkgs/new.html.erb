@@ -6,7 +6,6 @@
   <%=form_for @pkg, url:plat_pkgs_path(@plat), :html => { class: "app_form" } do |f|%>
     
     <%= hidden_field_tag "pkg[plat_id]", params[:plat_id] %>
-    <%= hidden_field_tag "pkg[app_id]", @plat.app_id %>
     <div class="title"><span>提交包</span></div>
     <div class="form-group">
       <%= f.file_field :file, required:true, accept:".ipa" %>

@@ -5,7 +5,12 @@ Rails.application.routes.draw do
     resources :plats
   end
 
-  resources :users
+  resources :users do
+    member do 
+      get :api_token
+      put "api_token" => "users#refresh_api_token"
+    end
+  end
 
   resources :plats do
     resources :pkgs
@@ -22,4 +27,6 @@ Rails.application.routes.draw do
   # , only:[:index,:show,:create,:new]
 
   root "apps#index"
+
+  post "api/pkgs" => "pkgs#api_create"
 end

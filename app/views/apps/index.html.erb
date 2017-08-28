@@ -2,10 +2,8 @@
 
 <div class="container app index app-host-container">
 
-<!-- Button trigger modal -->
-<%#=link_to "添加", new_app_path, class: "pull-right"%>
-<!-- <br>
-<hr> -->
+<%=render 'comoms/alert'%>
+
 <div class="row">
   <% if can? :create, App %>
     <div class="visible-md visible-lg">

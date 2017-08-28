@@ -1,0 +1,5 @@
+<%=render 'layouts/header'%>
+
+<div class="container user show">
+  <%=button_to '登出', session_path(current_user), form_class: "delete_btn", class:"btn-danger", data: {:confirm => 'Are you sure?'}, :method => :delete %>
+</div>

@@ -8,7 +8,11 @@
           <%=image_tag(@pkg.icon)%>
         </div>
         <div class="title"><%=@pkg.name%></div>
-        <div class="info">版本 <%=@pkg.version%>，<%=@pkg.size_mb%>MB，<%=@pkg.created_at&.strftime("%Y-%m-%d %R") %> </div>
+        <div class="info">
+          <%="版本:#{@pkg.version}, build:#{@pkg.build}"%>, <%=@pkg.size_mb%>MB 
+          <br>
+          <%=@pkg.created_at&.strftime("%Y-%m-%d %R") %> 
+        </div>
       </div>
       <a class="download-btn" href="<%=@download_url%>">
         下载

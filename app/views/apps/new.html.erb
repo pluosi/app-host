@@ -1,6 +1,7 @@
 <%=render 'layouts/header'%>
 
 <div class="container app new">
+  <%=render 'comoms/alert'%>
   <%=form_for @app, :html => { class: "app_form" } do |f|%>
     <div class="title"><span>新建应用</span></div>
       <div class="form-group">

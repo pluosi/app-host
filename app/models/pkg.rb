@@ -16,6 +16,7 @@
 #  file       :string
 #  size       :integer          default(0)
 #  uniq_key   :string
+#  user_id    :integer
 #
 
 class Pkg < ApplicationRecord
