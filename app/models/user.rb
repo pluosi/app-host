@@ -18,10 +18,12 @@ class User < ApplicationRecord
   has_many :plats, :dependent => :destroy
   has_many :pkgs, :dependent => :destroy
 
+  MIN_PWD_LEN = 4
+
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create }
   validates_uniqueness_of :email, :allow_blank => false
 
-  # validates_length_of :password, :minimum => 4
+  validates :password, presence: true, length: { minimum: MIN_PWD_LEN }, :on => :create
 
   before_save { self.email = email.downcase }
   before_create :create_remember_token

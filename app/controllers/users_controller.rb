@@ -31,6 +31,10 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     @user.password = params[:user][:password]
+    if params[:user][:password].length < User::MIN_PWD_LEN
+      flash[:error] = "密码少于#{User::MIN_PWD_LEN}位"
+      redirect_to edit_user_path(@user) and return
+    end
     if @user.save
       flash[:alert] = '修改成功'  
       redirect_to root_path
