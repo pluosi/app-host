@@ -27,12 +27,19 @@
       <% end %>
   </ul>
 
-  <div class="row ">
+  <div class="row">
     <%=render partial: "cell", collection: @pkgs, as: :pkg %>
   </div>
-  <br>
 
   <% if can? :create, Pkg %>
+    <div class="plat-info visible-md visible-lg">
+      <span>
+        平台: <%=@plat.plat_name%> 
+        <% if @plat.bundle_id.present? %>
+         包名: <%=@plat.bundle_id%>  
+        <% end %>
+      </span>
+    </div>
     <div class="visible-md visible-lg pull-right">
       <%=link_to '上传', new_plat_pkg_path(@plat), class:"btn btn-primary ui-plat" %>
     </div>

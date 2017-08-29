@@ -31,7 +31,7 @@ module PkgAdapter
     def app_size
     end
 
-    def app_ident
+    def app_bundle_id
     end
 
     def app_uniq_key

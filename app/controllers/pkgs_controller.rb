@@ -32,8 +32,8 @@ class PkgsController < ApplicationController
     pkg = Pkg.new(pkg_params.merge(user_id:current_user.id))
     pkg.app_id = pkg.plat.app_id
 
-    if @plat.bundle_id.present? && pkg.ident != @plat.bundle_id
-      raise "Pkg Bundle Id Validation Fail"
+    if @plat.bundle_id.present? && pkg.bundle_id != @plat.bundle_id
+      raise "Pkg Bundle Id Validation Fail (#{pkg.bundle_id} != #{@plat.bundle_id})"
     end
 
     if pkg.plat_name != @plat.plat_name

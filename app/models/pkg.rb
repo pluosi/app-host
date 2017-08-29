@@ -7,7 +7,7 @@
 #  name       :string
 #  icon       :string
 #  plat_name  :string
-#  ident      :string
+#  bundle_id  :string
 #  version    :string
 #  build      :string
 #  created_at :datetime         not null
@@ -61,7 +61,7 @@ class Pkg < ApplicationRecord
       self.version = parser.app_version
       self.build = parser.app_build
       self.size = parser.app_size
-      self.ident = parser.app_ident
+      self.bundle_id = parser.app_bundle_id
       self.plat_name = parser.plat
       self.uniq_key = parser.app_uniq_key
     end
@@ -78,7 +78,11 @@ class Pkg < ApplicationRecord
   end
 
   def download_url_for_mobile
-    "itms-services://?action=download-manifest&url=#{Settings.PROTOCOL}#{Settings.HOST}#{Rails.application.routes.url_helpers.manifest_pkg_path(self)}.plist"  
+    if ios?
+      "itms-services://?action=download-manifest&url=#{Settings.PROTOCOL}#{Settings.HOST}#{Rails.application.routes.url_helpers.manifest_pkg_path(self)}.plist"    
+    else
+      download_url
+    end
   end
 
   def download_url

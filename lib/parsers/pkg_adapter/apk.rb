@@ -44,7 +44,7 @@ module PkgAdapter
       File.size(@path)
     end
 
-    def app_ident
+    def app_bundle_id
       @apk.manifest.package_name
     end
 

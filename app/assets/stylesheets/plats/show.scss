@@ -3,6 +3,14 @@
     padding-left: 0px;
     padding-right: 0px;
     margin-top: 4px;
+    .plat-info{
+      margin-left: 16px;
+      display: block;
+      min-height: 22px;
+      color: #999;
+      font-size: 13px;
+      line-height: 24px;
+    }
     &>.nav{
       margin-left: 12px;
     }
