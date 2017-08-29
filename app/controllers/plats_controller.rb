@@ -12,7 +12,7 @@ class PlatsController < ApplicationController
   end
 
   def show
-    @pkgs = @plat.pkgs.id_desc
+    @pkgs = @plat.pkgs.id_desc.page(params[:page]).per(params[:per])
     @plats = Plat.where(app_id:params[:app_id])
   end
 

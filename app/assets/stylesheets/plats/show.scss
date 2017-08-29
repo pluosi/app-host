@@ -11,6 +11,13 @@
       font-size: 13px;
       line-height: 24px;
     }
+    div.paginate{
+      margin-left: 14px;
+       @media (max-width: 900px){
+          margin-left: 0px;
+          text-align: center;
+       }
+    }
     &>.nav{
       margin-left: 12px;
     }

@@ -92,6 +92,9 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    kaminari (0.17.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -214,6 +217,7 @@ DEPENDENCIES
   config
   jbuilder (~> 2.5)
   jquery-rails
+  kaminari
   listen (>= 3.0.5, < 3.2)
   mini_magick
   normalize-rails

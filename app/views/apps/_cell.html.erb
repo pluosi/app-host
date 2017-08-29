@@ -14,7 +14,7 @@
           <%=app.name%>
           <span class="date-label">
             <% if app.pkgs.last.present? %>
-              <%=time_ago_in_words(app.pkgs.last.updated_at)%>
+              <%=time_ago_in_words(app.pkgs.last.updated_at)%> 前
             <% end %>
           </span>
         </span>

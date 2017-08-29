@@ -30,6 +30,9 @@
   <div class="row">
     <%=render partial: "cell", collection: @pkgs, as: :pkg %>
   </div>
+  <div class="paginate">
+    <%= paginate @pkgs %>
+  </div>
 
   <% if can? :create, Pkg %>
     <div class="plat-info visible-md visible-lg">
