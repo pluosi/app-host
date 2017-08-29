@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :users do
     member do 
       get :api_token
-      put "api_token" => "users#refresh_api_token"
+      put :api_token, to: "users#refresh_api_token"
     end
   end
 
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :pkgs, only:[:show] do
-    member do 
+    member do
       get :manifest
     end
   end
