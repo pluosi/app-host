@@ -45,7 +45,7 @@ module PkgAdapter
     end
 
     def app_size_mb
-      '%.1f' % (app_size / (1024*1024.0))
+      '%.2f' % (app_size / (1024*1024.0))
     end
 
   end
