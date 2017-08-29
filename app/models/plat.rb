@@ -17,7 +17,7 @@
 
 class Plat < ApplicationRecord
   acts_as_paranoid
-  
+
   has_many :pkgs, :dependent => :destroy
   
   belongs_to :app
@@ -33,5 +33,11 @@ class Plat < ApplicationRecord
   def plat_ext_name
     PkgAdapter.config.adapters[plat_name][:ext_name]
   end
+
+  def bundle_id_reg
+      bundle_id_reg = bundle_id.gsub('.','\.').gsub('*','.*')
+      bundle_id_reg = Regexp.new("^#{bundle_id_reg}")
+  end
+
   
 end
