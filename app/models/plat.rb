@@ -35,8 +35,26 @@ class Plat < ApplicationRecord
   end
 
   def bundle_id_reg
+    if bundle_id.present?
       bundle_id_reg = bundle_id.gsub('.','\.').gsub('*','.*')
       bundle_id_reg = Regexp.new("^#{bundle_id_reg}")
+    else
+      /.*/
+    end
+  end
+
+  def validate_pkg(pkg)
+    if (bundle_id_reg =~ pkg.bundle_id) == nil
+      raise "Bundle Id #{pkg.bundle_id} not match #{bundle_id}"
+    end
+
+    if pkg.plat_name != plat_name
+      raise "Pkg Plat Validation Fail"
+    end
+
+    if pkg_uniq? && !pkg.uniq?
+      raise "Pkg Uniq Validation Fail"
+    end
   end
 
   

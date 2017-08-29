@@ -32,19 +32,7 @@ class PkgsController < ApplicationController
     pkg = Pkg.new(pkg_params.merge(user_id:current_user.id))
     pkg.app_id = pkg.plat.app_id
 
-    if @plat.bundle_id.present?
-      if (@plat.bundle_id_reg =~ pkg.bundle_id) == nil
-        raise "Bundle Id #{pkg.bundle_id} not match #{@plat.bundle_id}"
-      end
-    end
-
-    if pkg.plat_name != @plat.plat_name
-      raise "Pkg Plat Validation Fail"
-    end
-
-    if @plat.pkg_uniq? && !pkg.uniq?
-      raise "Pkg Uniq Validation Fail"
-    end
+    @plat.validate_pkg(pkg)
     
     pkg.save
     redirect_to pkg_path pkg
@@ -76,17 +64,7 @@ class PkgsController < ApplicationController
     pkg = Pkg.new({file:params[:file], user_id:user.id, plat_id:plat.id})
     pkg.app_id = pkg.plat.app_id
 
-    if plat.bundle_id.present? && pkg.ident != plat.bundle_id
-      raise "Pkg Bundle Id Validation Fail"
-    end
-
-    if pkg.plat_name != plat.plat_name
-      raise "Pkg Plat Validation Fail"
-    end
-
-    if plat.pkg_uniq? && !pkg.uniq?
-      raise "Pkg Uniq Validation Fail"
-    end
+    plat.validate_pkg(pkg)
     
     pkg.save!
 
