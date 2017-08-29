@@ -35,6 +35,11 @@ class Plat < ApplicationRecord
     PkgAdapter.config.adapters[plat_name][:ext_name]
   end
 
+  def plat_des_name
+    PkgAdapter.config.adapters[plat_name][:des]
+  end
+
+
   def bundle_id_reg
     if bundle_id.present?
       bundle_id_reg = bundle_id.gsub('.','\.').gsub('*','.*')

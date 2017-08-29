@@ -37,7 +37,7 @@
   <% if can? :create, Pkg %>
     <div class="plat-info visible-md visible-lg">
       <span>
-        平台: <%=@plat.plat_name%> 
+        平台: <%=@plat.plat_des_name%> 
         <% if @plat.bundle_id.present? %>
          包名: <%=@plat.bundle_id%>  
         <% end %>
