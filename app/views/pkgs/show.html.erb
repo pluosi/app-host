@@ -87,8 +87,8 @@
   $(function(){
     $('#qrcode').empty();
     new QRCode(document.getElementById("qrcode"), "<%=@download_url%>");
-    $(".open-icon>a").click(function(event) {
-      $(".extend-info>.wrap>.info").toggle()
+    $(".open-icon").click(function(event) {
+      $(".extend-info>.wrap>.info").slideToggle('fast')
     });
 
   })();
