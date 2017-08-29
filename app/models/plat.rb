@@ -16,6 +16,8 @@
 #
 
 class Plat < ApplicationRecord
+  acts_as_paranoid
+  
   has_many :pkgs, :dependent => :destroy
   
   belongs_to :app

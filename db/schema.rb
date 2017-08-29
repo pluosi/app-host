@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170829150228) do
+ActiveRecord::Schema.define(version: 20170829174650) do
 
   create_table "apps", force: :cascade do |t|
     t.string "name"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20170829150228) do
     t.integer "palts_count", default: 0
     t.integer "packages_count", default: 0
     t.integer "user_id"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_apps_on_deleted_at"
   end
 
   create_table "pkgs", force: :cascade do |t|
@@ -43,6 +45,8 @@ ActiveRecord::Schema.define(version: 20170829150228) do
     t.integer "size", default: 0
     t.string "uniq_key"
     t.integer "user_id"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_pkgs_on_deleted_at"
   end
 
   create_table "plats", force: :cascade do |t|
@@ -56,6 +60,8 @@ ActiveRecord::Schema.define(version: 20170829150228) do
     t.string "bundle_id"
     t.boolean "pkg_uniq", default: true
     t.integer "user_id"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_plats_on_deleted_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,7 +72,9 @@ ActiveRecord::Schema.define(version: 20170829150228) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "api_token"
+    t.datetime "deleted_at"
     t.index ["api_token"], name: "index_users_on_api_token"
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end

@@ -21,6 +21,8 @@
 
 class Pkg < ApplicationRecord
 
+  acts_as_paranoid
+
   attr_accessor :app_icon
 
   belongs_to :app
@@ -30,8 +32,8 @@ class Pkg < ApplicationRecord
   validates_presence_of :user_id
   validates_presence_of :file
 
-  mount_uploader :icon, IconUploader, :dependent => :destroy
-  mount_uploader :file, PkgUploader, :dependent => :destroy
+  mount_uploader :icon, IconUploader
+  mount_uploader :file, PkgUploader
 
   enum plat_name: {
     ios: 'ios',

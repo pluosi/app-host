@@ -20,6 +20,8 @@
 
 class App < ApplicationRecord
 
+  acts_as_paranoid
+
   has_many :pkgs, :dependent => :destroy
   has_many :plats, :dependent => :destroy
 
