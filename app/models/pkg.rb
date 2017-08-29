@@ -63,7 +63,6 @@ class Pkg < ApplicationRecord
       self.size = parser.app_size
       self.ident = parser.app_ident
       self.plat_name = parser.plat
-
       self.uniq_key = parser.app_uniq_key
     end
   end

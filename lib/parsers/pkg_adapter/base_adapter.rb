@@ -1,4 +1,5 @@
 module PkgAdapter
+
   class BaseAdapter
     # attr_accessor :file
 
@@ -34,6 +35,10 @@ module PkgAdapter
     end
 
     def app_uniq_key
+    end
+
+    def tmp_dir
+      "tmp/pkgs/#{CGI::escape(plat)}_#{Digest::MD5.hexdigest(@path)}"
     end
 
   end

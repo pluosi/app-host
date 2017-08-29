@@ -21,7 +21,7 @@
 
     <div class="form-group">
       <label for="plat_name">包类型*：</label>
-      <%= f.select(:plat_name,{'iOS'=>'ios','Android'=>'android'},{},{class:"form-control"}) %>
+      <%= f.select(:plat_name,pkg_selectable_map,{},{class:"form-control"}) %>
     </div>
 
     <div class="form-group">

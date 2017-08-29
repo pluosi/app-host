@@ -27,5 +27,9 @@ class Plat < ApplicationRecord
     ios: 'ios',
     android: 'android'
   }
+
+  def plat_ext_name
+    PkgAdapter.config.adapters[plat_name][:ext_name]
+  end
   
 end

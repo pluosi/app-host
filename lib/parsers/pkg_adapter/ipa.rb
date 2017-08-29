@@ -7,8 +7,7 @@ module PkgAdapter
     def parse
         Zip::File.open(@path) do |zip_file|
           # Handle entries one by one
-
-          path = "tmp/pkgs/#{Digest::MD5.hexdigest(@path)}"
+          path = tmp_dir
           FileUtils.rm_rf path
           # zip_file.each do |entry|
           #   # Extract to file/directory/symlink

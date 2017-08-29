@@ -8,7 +8,7 @@
     <%= hidden_field_tag "pkg[plat_id]", params[:plat_id] %>
     <div class="title"><span>提交包</span></div>
     <div class="form-group">
-      <%= f.file_field :file, required:true, accept:".ipa" %>
+      <%= f.file_field :file, required:true, accept:".#{@plat.plat_ext_name}" %>
     </div>
     <%=f.submit "上传", class:"btn btn-primary ui-plat"%>
   <%end%>
