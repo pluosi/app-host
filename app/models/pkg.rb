@@ -17,6 +17,7 @@
 #  size       :integer          default(0)
 #  uniq_key   :string
 #  user_id    :integer
+#  deleted_at :datetime
 #
 
 class Pkg < ApplicationRecord

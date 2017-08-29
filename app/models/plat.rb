@@ -13,6 +13,7 @@
 #  bundle_id      :string
 #  pkg_uniq       :boolean          default(TRUE)
 #  user_id        :integer
+#  deleted_at     :datetime
 #
 
 class Plat < ApplicationRecord

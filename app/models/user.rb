@@ -10,6 +10,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  api_token       :string
+#  deleted_at      :datetime
 #
 
 class User < ApplicationRecord
