@@ -48,5 +48,19 @@ module PkgAdapter
       @apk.manifest.package_name
     end
 
+    def ext_info
+      manifest = @apk.manifest
+      info = {
+        "包信息" => [
+          "包名: #{self.app_bundle_id}",
+          "体积: #{app_size_mb}MB",
+          "最小SDK: #{manifest.min_sdk_ver}",
+        ],
+        "signs" => @apk.signs.map { |path, sign| path },
+        "certs" => @apk.certificates.map { |path, cert| path },
+        "permissions" => manifest.use_permissions,
+      }
+    end
+
   end
 end

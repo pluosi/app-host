@@ -29,7 +29,6 @@
         text-align: center;
         color: #9B9B9B;
         font-size: 14px;
-        
       }
     }
     .download-btn{
@@ -83,6 +82,8 @@
       .info{
         color: #9B9B9B;
         font-size: 13px;
+        max-width: 100%;
+        word-break:break-all;
       }
     }
   }

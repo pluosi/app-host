@@ -33,7 +33,22 @@
           <a class="glyphicon glyphicon-chevron-down"></a>
         </div>
         <p class="info" style="display: none;">
-         <%=@ext_info%>
+         <% if @ext_info.is_a?(Hash) %>
+           <% @ext_info.each do |tilte,lines| %>
+             <%=tilte%>:
+             <% if lines.is_a?(Array) %>
+               <%lines.each do |line| %>
+                <br>
+                &nbsp;&nbsp;&nbsp;-&nbsp;<%=line%>
+               <% end %>
+             <% else %>
+                &nbsp;<%=lines%>
+             <% end %>
+             <br>
+           <% end %>
+         <% else %>
+          <%=@ext_info%>
+         <% end %>
         </p>  
       </div>
     </div>

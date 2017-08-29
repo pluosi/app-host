@@ -55,7 +55,6 @@ class Pkg < ApplicationRecord
 
   def parsing
     if file.path
-      parser = PkgAdapter.pkg_adapter(file.path)
       self.name = parser.app_name
       self.app_icon = parser.app_icon
       self.version = parser.app_version
@@ -67,6 +66,10 @@ class Pkg < ApplicationRecord
     end
   end
 
+  def parser
+    @parser ||= PkgAdapter.pkg_adapter(file.path)
+  end
+
   def save_icon
     if app_icon
       self.icon.store!(File.new(app_icon))
@@ -75,6 +78,7 @@ class Pkg < ApplicationRecord
   end
 
   def ext_info
+    parser.ext_info
   end
 
   def download_url_for_mobile

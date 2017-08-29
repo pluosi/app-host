@@ -37,8 +37,15 @@ module PkgAdapter
     def app_uniq_key
     end
 
+    def ext_info
+    end
+
     def tmp_dir
       "tmp/pkgs/#{CGI::escape(plat)}_#{Digest::MD5.hexdigest(@path)}"
+    end
+
+    def app_size_mb
+      '%.1f' % (app_size / (1024*1024.0))
     end
 
   end

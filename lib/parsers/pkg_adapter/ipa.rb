@@ -72,12 +72,36 @@ module PkgAdapter
       @plist["CFBundleIdentifier"]
     end
 
+    def ext_info
+      devices = @profile["ProvisionedDevices"];
+      info = {
+        "包类型" => devices ? "Ad-hoc" : "Release",
+        "包信息" => [
+          "包名: #{self.app_bundle_id}",
+          "体积: #{app_size_mb}MB",
+        ],
+        "描述文件" => [
+          "名称: #{@profile['Name']}",
+          "TeamName: #{@profile['TeamName']}",
+          "TeamID: #{@profile['TeamIdentifier'].join(',')}",
+          "创建时间: #{@profile['CreationDate']}",
+          "过期时间: #{@profile['ExpirationDate']}"
+        ],
+        "Entitlements" => @profile['Entitlements'].map{|k,v| "#{k}: #{v}" },
+      }
+      if devices
+        info["包含设备 (#{devices.count}台)"] = devices
+      end
+      info
+    end
+
   end
 
   class ConfigParser
     def self.mobileprovision(stream)
+      # security cms -D -i Reutte.app/embedded.mobileprovision
       profile = stream.slice(stream.index('<?'), stream.length)
-      Nokogiri.XML(profile)
+      self.plist(Nokogiri.XML(profile).to_xml)
     end
 
     def self.plist(stream)
