@@ -85,7 +85,8 @@ module PkgAdapter
           "TeamName: #{@profile['TeamName']}",
           "TeamID: #{@profile['TeamIdentifier'].join(',')}",
           "创建时间: #{@profile['CreationDate']}",
-          "过期时间: #{@profile['ExpirationDate']}"
+          "过期时间: #{@profile['ExpirationDate']}",
+          "UUID: #{@profile['UUID']}",
         ],
         "Entitlements" => @profile['Entitlements'].map{|k,v| "#{k}: #{v}" },
       }
