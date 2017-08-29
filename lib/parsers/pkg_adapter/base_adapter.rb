@@ -48,5 +48,10 @@ module PkgAdapter
       '%.2f' % (app_size / (1024*1024.0))
     end
 
+    def pkg_mb5
+        Digest::MD5.hexdigest File.read(@path)
+    end
+    
+
   end
 end

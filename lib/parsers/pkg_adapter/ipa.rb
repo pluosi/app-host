@@ -79,6 +79,7 @@ module PkgAdapter
         "包信息" => [
           "包名: #{self.app_bundle_id}",
           "体积: #{app_size_mb}MB",
+          "MD5: #{pkg_mb5}"
         ],
         "描述文件" => [
           "名称: #{@profile['Name']}",

@@ -54,6 +54,7 @@ module PkgAdapter
         "包信息" => [
           "包名: #{self.app_bundle_id}",
           "体积: #{app_size_mb}MB",
+          "MD5: #{pkg_mb5}",
           "最小SDK: #{manifest.min_sdk_ver}",
         ],
         "signs" => @apk.signs.map { |path, sign| path },
