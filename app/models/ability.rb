@@ -11,8 +11,17 @@ class Ability
         can :read, :all
         if user.persisted? 
           can :manage, App, :user_id => user.id
-          can :manage, Plat, :user_id => user.id
-          can :manage, Pkg, :user_id => user.id 
+          
+          # can :manage, Plat, :user_id => user.id
+          # can :manage, Pkg, :user_id => user.id 
+          
+          can :manage, Plat do |plat|
+            plat.user_id == user.id || plat.app.user_id == user.id
+          end
+
+          can :manage, Pkg do |pkg|
+            pkg.user_id == user.id || pkg.plat.user_id == user.id || pkg.app.user_id == user.id
+          end
         end
     end
     #

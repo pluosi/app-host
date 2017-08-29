@@ -1,0 +1,15 @@
+.user.api_token{
+  background-color: #fff;
+  min-height: 100vh;
+
+  min-height:-moz-calc(100vh - 95px); 
+  min-height:-webkit-calc(100vh - 95px); 
+  min-height: calc(100vh - 95px);
+  display: block;
+  margin-top: 40px;
+  color: #666;
+  font-size: 15px;
+  h3,h4{
+    color: #333;
+  }
+}
