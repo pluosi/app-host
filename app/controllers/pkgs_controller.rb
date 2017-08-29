@@ -58,6 +58,9 @@ class PkgsController < ApplicationController
     api_token = params[:token]
 
     user = User.find_by(api_token: api_token)
+    unless user
+      raise "401 Unauthorized"
+    end
 
     plat = Plat.find params[:plat_id]
 
