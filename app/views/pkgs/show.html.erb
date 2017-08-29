@@ -24,34 +24,36 @@
     <label>或者用手机扫描下面的二维码安装</label>
   </div>
 
-  <% @ext_info = @pkg.ext_info %>
-  <% if @ext_info.present? %>
-    <div class="extend-info">
-      <div class="wrap">
-        <div class="open-icon">
-          <span>扩展信息:</span>
-          <a class="glyphicon glyphicon-chevron-down"></a>
-        </div>
-        <p class="info" style="display: none;">
-         <% if @ext_info.is_a?(Hash) %>
-           <% @ext_info.each do |tilte,lines| %>
-             <%=tilte%>:
-             <% if lines.is_a?(Array) %>
-               <%lines.each do |line| %>
-                <br>
-                &nbsp;&nbsp;&nbsp;-&nbsp;<%=line%>
+  <% cache [@pkg,'v1'] do %>
+    <% @ext_info = @pkg.ext_info %>
+    <% if @ext_info.present? %>
+      <div class="extend-info">
+        <div class="wrap">
+          <div class="open-icon">
+            <span>扩展信息:</span>
+            <a class="glyphicon glyphicon-chevron-down"></a>
+          </div>
+          <p class="info" style="display: none;">
+           <% if @ext_info.is_a?(Hash) %>
+             <% @ext_info.each do |tilte,lines| %>
+               <%=tilte%>:
+               <% if lines.is_a?(Array) %>
+                 <%lines.each do |line| %>
+                  <br>
+                  &nbsp;&nbsp;&nbsp;-&nbsp;<%=line%>
+                 <% end %>
+               <% else %>
+                  &nbsp;<%=lines%>
                <% end %>
-             <% else %>
-                &nbsp;<%=lines%>
+               <br>
              <% end %>
-             <br>
+           <% else %>
+            <%=@ext_info%>
            <% end %>
-         <% else %>
-          <%=@ext_info%>
-         <% end %>
-        </p>  
+          </p>  
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 
   <% if @history.present? %>

@@ -6,7 +6,7 @@ class PkgsController < ApplicationController
 
   def show
     @pkg = Pkg.find params[:id]
-    history = Pkg.where("id < ?",@pkg.id).where(plat_id:@pkg.plat_id).id_desc
+    history = Pkg.where("id < ?",@pkg.id).limit(20).where(plat_id:@pkg.plat_id).id_desc
     history.each do |e|
       @history ||= {}
       time_str = e.created_at.strftime("%Y-%m-%d")
