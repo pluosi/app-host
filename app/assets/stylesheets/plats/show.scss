@@ -28,7 +28,7 @@
     .cell{
       overflow: hidden;
       $icon_with : 48px;
-      $padding_size : 15px;
+      $padding_size : 12px;
       padding-left: 0px;
       padding-right: 0px;
       .divider{
@@ -60,21 +60,25 @@
           width:-moz-calc(100% - 48px); 
           width:-webkit-calc(100% - 48px); 
           width: calc(100% - 48px);
-          padding-left: 12px;
+          padding-left: 8px;
           .title{
             display: block;
             width: 100%;
-            font-size: 16px;
+            font-size: 14px;
+            float: left;
+            margin-top: 4px;
+            margin-bottom: 4px;
           }
           .date-label{
             float: right;
             margin-right: $padding_size;
-            font-size: 13px;
-            color: #999999;
+            font-size: 12px;
           }
           .sub-title{
             color: #666666;
             font-size: 13px;
+            line-height: 20px;
+            float: left;
           }
           .actions{
             float: right;

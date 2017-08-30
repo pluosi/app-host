@@ -2,22 +2,23 @@
 #
 # Table name: pkgs
 #
-#  id         :integer          not null, primary key
-#  app_id     :integer
-#  name       :string
-#  icon       :string
-#  plat_name  :string
-#  bundle_id  :string
-#  version    :string
-#  build      :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  plat_id    :integer
-#  file       :string
-#  size       :integer          default(0)
-#  uniq_key   :string
-#  user_id    :integer
-#  deleted_at :datetime
+#  id             :integer          not null, primary key
+#  app_id         :integer
+#  name           :string
+#  icon           :string
+#  plat_name      :string
+#  bundle_id      :string
+#  version        :string
+#  build          :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  plat_id        :integer
+#  file           :string
+#  size           :integer          default(0)
+#  uniq_key       :string
+#  user_id        :integer
+#  deleted_at     :datetime
+#  file_nick_name :string
 #
 
 class Pkg < ApplicationRecord
@@ -31,7 +32,7 @@ class Pkg < ApplicationRecord
   belongs_to :user
 
   validates_presence_of :user_id
-  validates_presence_of :file
+  validates_presence_of :file, :file_nick_name
 
   mount_uploader :icon, IconUploader
   mount_uploader :file, PkgUploader
@@ -81,7 +82,7 @@ class Pkg < ApplicationRecord
   end
 
   def ext_info
-    parser.ext_info
+    @ext_info ||= parser.ext_info
   end
 
   def download_url_for_mobile
@@ -95,6 +96,9 @@ class Pkg < ApplicationRecord
   def download_url
     "#{Settings.PROTOCOL}#{Settings.HOST}#{self.file}"
   end
-  
+
+  def display_file_name
+    File.basename(file.path,".*")
+  end
   
 end

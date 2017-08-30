@@ -32,6 +32,10 @@ class PkgsController < ApplicationController
     pkg = Pkg.new(pkg_params.merge(user_id:current_user.id))
     pkg.app_id = pkg.plat.app_id
 
+    unless pkg_params[:file_nick_name].present?
+      pkg.file_nick_name = pkg.display_file_name
+    end
+
     @plat.validate_pkg(pkg)
     
     pkg.save
@@ -67,6 +71,10 @@ class PkgsController < ApplicationController
     pkg = Pkg.new({file:params[:file], user_id:user.id, plat_id:plat.id})
     pkg.app_id = pkg.plat.app_id
 
+    unless params[:file_nick_name].present?
+      pkg.file_nick_name = pkg.display_file_name
+    end
+
     plat.validate_pkg(pkg)
     
     pkg.save!
@@ -86,6 +94,6 @@ class PkgsController < ApplicationController
 
   # # Never trust parameters from the scary internet, only allow the white list through.
   def pkg_params
-    params.require(:pkg).permit(:file,:plat_id)
+    params.require(:pkg).permit(:file,:plat_id,:file_nick_name)
   end
 end

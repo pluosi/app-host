@@ -1,19 +1,20 @@
 <div class="col-md-12 cell">
   <a href="<%=pkg_path(pkg)%>">
+
     <div class="cell-container">
       <div class="icon">
         <%=image_tag(pkg.icon)%>
       </div>
       <div class="detail">
         <span class="title">
-          <%=pkg.name%>
-          <span class="date-label">
-            <%=time_ago_in_words pkg.created_at %> 前
+          <%=pkg.file_nick_name%>
+          <span class="date-label tint-text">
+            <%=time_ago_in_words pkg.created_at %>前
           </span>
         </span>
-        
+
         <span class="sub-title">
-          <%="版本#{pkg.version}, build:#{pkg.build}"%>, <%=pkg.size_mb%>MB
+         <%=pkg.name%> <span class="tint-text"><%="#{pkg.version}, build:#{pkg.build}"%> </span>
         </span>
       
         <div class="actions">
