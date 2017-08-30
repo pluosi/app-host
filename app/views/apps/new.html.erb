@@ -3,7 +3,13 @@
 <div class="container app new">
   <%=render 'comoms/alert'%>
   <%=form_for @app, :html => { class: "app_form" } do |f|%>
-    <div class="title"><span>新建应用</span></div>
+    <div class="title"><span>
+    <% if @app.persisted? %>
+      修改应用
+    <% else %>
+      新建应用
+    <% end %>
+    </span></div>
       <div class="form-group">
         <label for="app_name">应用名称*：</label>
         <%= f.text_field :name, class:"form-control", required:true %>
