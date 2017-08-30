@@ -10,7 +10,7 @@ end
 
 module Bplist
 	VERSION = "20120916.1906"
-	HostKCode = Kconv::SJIS
+	HostKCode = Kconv::UTF8
 
 	class DataString < String
 		def inspect
