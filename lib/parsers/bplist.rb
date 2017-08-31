@@ -5,7 +5,7 @@
 # 20120916.1906: ruby1.9-ize. add runnable test code. tested with ruby 1.9.3p0-i386-mingw32
 
 if not defined? Kconv::REVISION
-	require 'Kconv'
+	require 'kconv'
 end
 
 module Bplist
