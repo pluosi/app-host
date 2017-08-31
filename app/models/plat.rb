@@ -19,6 +19,8 @@
 class Plat < ApplicationRecord
   acts_as_paranoid
 
+  include PlatAble
+
   has_many :pkgs, :dependent => :destroy
   
   belongs_to :app
@@ -30,14 +32,6 @@ class Plat < ApplicationRecord
     ios: 'ios',
     android: 'android'
   }
-
-  def plat_ext_name
-    PkgAdapter.config.adapters[plat_name][:ext_name]
-  end
-
-  def plat_des_name
-    PkgAdapter.config.adapters[plat_name][:des]
-  end
 
 
   def bundle_id_reg

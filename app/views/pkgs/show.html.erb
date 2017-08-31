@@ -14,11 +14,20 @@
           <%=@pkg.created_at&.strftime("%Y-%m-%d %R") %> 
         </div>
       </div>
-      <a class="download-btn" href="<%=@download_url%>">
-        下载
-      </a>
+
+      <% if @download_url.present? %>
+        <a class="download-btn" href="<%=@download_url%>">
+          下载
+        </a>
+      <% else %>
+        <a class="download-btn">
+          无法下载
+        </a>
+      <% end %>
+
     </div>
   </div>
+
   <div class="qrcode">
     <div id="qrcode"></div>
     <label>或者用手机扫描下面的二维码安装</label>

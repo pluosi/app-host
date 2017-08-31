@@ -14,14 +14,17 @@
         </span>
 
         <span class="sub-title">
-         <%=pkg.name%> <span class="tint-text"><%="#{pkg.version}, build:#{pkg.build}"%> </span>
+         <%=pkg.name%> <span class="tint-text"><%="#{pkg.version}, build:#{pkg.build}"%></span>
         </span>
       
         <div class="actions">
           <% download_url = browser.device.mobile? ? pkg.download_url_for_mobile : pkg.download_url %>
-          <a class="download-btn" href="<%=download_url%>">
-            下载
-          </a>
+
+          <% unless (browser.platform.ios? && !pkg.ios?) || (browser.platform.android? && !pkg.android?) %>
+            <a class="download-btn" href="<%=download_url%>">
+              下载
+            </a>
+          <% end %>
 
           <% if can? :destroy, pkg %>
             <%=button_to '删除', plat_pkg_path(pkg.plat, pkg), form_class: "delete_btn", class:"btn-danger", data: {:confirm => 'Are you sure?'}, :method => :delete %>

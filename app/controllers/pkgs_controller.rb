@@ -13,7 +13,9 @@ class PkgsController < ApplicationController
       @history[time_str] ||= []
       @history[time_str] << e
     end
-    @download_url = browser.device.mobile? ? @pkg.download_url_for_mobile : @pkg.download_url
+    unless (browser.platform.ios? && !@pkg.ios?) || (browser.platform.android? && !@pkg.android?)
+      @download_url = browser.device.mobile? ? @pkg.download_url_for_mobile : @pkg.download_url
+    end
   end
 
   #ios install manifest file

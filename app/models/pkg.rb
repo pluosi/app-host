@@ -22,10 +22,10 @@
 #
 
 class Pkg < ApplicationRecord
-
   acts_as_paranoid
 
   attr_accessor :app_icon
+  include PlatAble
 
   belongs_to :app
   belongs_to :plat

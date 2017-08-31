@@ -3,10 +3,19 @@
     height: 100vh;
     display: flex;
     width: 100%;
+    position: relative;
     /*background-color: yellow;*/
     .info-container{
       margin: auto;
       /*background-color: red;  */
+    }
+    .pat_name{
+      font-weight: normal;
+      font-size: 15px;
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      color: #ddd;
     }
     .app-info{
       .icon{
