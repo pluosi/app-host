@@ -34,17 +34,16 @@
     <%= paginate @pkgs %>
   </div>
 
+  <div class="plat-info">
+    <span>
+      平台: <%=@plat.plat_des_name%> 包数: <%=@plat.pkgs.count%> 
+      <% if @plat.bundle_id.present? %>
+       包名: <%=@plat.bundle_id%>  
+      <% end %>
+    </span>
+  </div>
+
   <% if can? :create, Pkg %>
-    <div class="plat-info visible-md visible-lg">
-      <span>
-        平台: <%=@plat.plat_des_name%> 包数: <%=@plat.pkgs.count%> 
-
-        <% if @plat.bundle_id.present? %>
-         包名: <%=@plat.bundle_id%>  
-        <% end %>
-
-      </span>
-    </div>
     <div class="visible-md visible-lg pull-right">
       <%=link_to '上传', new_plat_pkg_path(@plat), class:"btn btn-primary ui-plat" %>
     </div>
