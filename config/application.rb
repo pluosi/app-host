@@ -18,5 +18,8 @@ module AppHost
     config.eager_load_paths += %W( #{config.root}/lib/parsers #{config.root}/lib )
 
     # config.autoload_paths += %W(#{config.root}/lib/parsers)
+
+    config.action_mailer.default_url_options = { :host => Settings.HOST }
+
   end
 end

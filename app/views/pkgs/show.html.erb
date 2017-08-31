@@ -97,7 +97,7 @@
 <script type="text/javascript">
   $(function(){
     $('#qrcode').empty();
-    new QRCode(document.getElementById("qrcode"), "<%=@download_url%>");
+    new QRCode(document.getElementById("qrcode"), "<%=pkg_url(@pkg)%>");
     $(".open-icon").click(function(event) {
       $(".extend-info>.wrap>.info").slideToggle('fast')
     });
