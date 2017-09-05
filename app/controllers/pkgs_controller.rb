@@ -70,7 +70,7 @@ class PkgsController < ApplicationController
 
     plat = Plat.find params[:plat_id]
 
-    pkg = Pkg.new({file:params[:file], user_id:user.id, plat_id:plat.id})
+    pkg = Pkg.new({file:params[:file], user_id:user.id, plat_id:plat.id, file_nick_name:params[:file_nick_name]})
     pkg.app_id = pkg.plat.app_id
 
     unless params[:file_nick_name].present?
