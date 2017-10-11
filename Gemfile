@@ -53,7 +53,7 @@ gem 'config'
 
 gem 'browser'
 
-gem 'apktools'
+# gem 'apktools'
 
 gem 'cancancan', '~> 2.0'
 
