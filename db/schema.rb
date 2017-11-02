@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170830082349) do
+ActiveRecord::Schema.define(version: 20171102093445) do
 
   create_table "apps", force: :cascade do |t|
     t.string "name"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20170830082349) do
     t.boolean "pkg_uniq", default: true
     t.integer "user_id"
     t.datetime "deleted_at"
+    t.integer "sort", default: 0
     t.index ["deleted_at"], name: "index_plats_on_deleted_at"
   end
 

@@ -14,16 +14,16 @@
 
   </div>
 
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs" id="nav_ul">
       <%@plats.each_with_index do |plat,index|%>
         <% if plat.id == params[:id].to_i %>
-          <li role="presentation" class="active"><%=link_to plat.name, app_plat_path(@app,plat) %></li>
+          <li data-id="<%=plat.id%>" role="presentation" class="active nav-tab-item"><%=link_to plat.name, app_plat_path(@app,plat) %></li>
         <% else %>
-          <li role="presentation"><%=link_to plat.name, app_plat_path(@app,plat) %></li>
+          <li data-id="<%=plat.id%>" role="presentation" class="nav-tab-item"><%=link_to plat.name, app_plat_path(@app,plat) %></li>
         <% end %>
       <% end %>
       <% if can? :create, Plat %>
-        <li role="presentation" class="visible-md visible-lg"><%=link_to '+', new_app_plat_path %></li>
+        <li role="presentation" class="visible-md visible-lg nav-add-btn" id="nav_add_btn"><%=link_to '+', new_app_plat_path %></li>
       <% end %>
   </ul>
 
@@ -49,4 +49,41 @@
     </div>
   <% end %>
 
+
 </div>
+
+<script type="text/javascript">
+  $(function(){
+    //修改循序
+    <% if can? :update, @app %>
+      var add_btn = null;
+      var list = document.getElementById("nav_ul");
+      Sortable.create(list,
+        {filter:".nav-add-btn",
+          onStart: function (evt) {
+            console.log('onStart')
+            add_btn = $("#nav_add_btn")
+            $(add_btn).remove()
+          },
+          onEnd: function (evt) {
+            console.log('onEnd')
+            var ids = $(".nav-tab-item").map(function(){
+              return $(this).data("id")
+            }).get()
+
+            $.ajax({
+              url: '/api/plat/sort',
+              type: 'PUT',
+              data: {ids: ids.join(','),app_id:<%=params[:app_id]%>},
+            })
+            .fail(function() {
+              alert("修改顺序失败")
+              location.reload();
+            })
+
+            $("#nav_ul").append(add_btn)
+          }}
+        );
+    <% end %>
+  })
+</script>

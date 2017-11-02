@@ -29,4 +29,6 @@ Rails.application.routes.draw do
   root "apps#index"
 
   post "api/pkgs" => "pkgs#api_create"
+
+  put "api/plat/sort" => "plats#api_sort"
 end

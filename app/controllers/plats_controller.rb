@@ -1,5 +1,5 @@
 class PlatsController < ApplicationController
-  before_action :set_app, only: [:index, :show, :new, :create, :destroy]
+  before_action :set_app, only: [:index, :show, :new, :create, :destroy, :api_sort]
   before_action :set_plat, only: [:show,:destroy,:update,:edit]
 
   def index
@@ -13,7 +13,7 @@ class PlatsController < ApplicationController
 
   def show
     @pkgs = @plat.pkgs.id_desc.page(params[:page]).per(params[:per])
-    @plats = Plat.where(app_id:params[:app_id])
+    @plats = Plat.where(app_id:params[:app_id]).order(:sort,:id)
   end
 
   def new
@@ -22,7 +22,7 @@ class PlatsController < ApplicationController
 
   def create
     authorize!(:create, Plat)
-    plat = Plat.create(plat_params.merge(user_id:current_user.id))
+    plat = Plat.create(plat_params.merge(user_id:current_user.id,sort:Plat.count))
     redirect_to app_plat_path @app, plat
   end
 
@@ -45,6 +45,17 @@ class PlatsController < ApplicationController
     authorize!(:update, @plat)
     @plat.update(plat_params)
     redirect_to app_plat_path @plat.app, @plat
+  end
+
+  def api_sort
+    authorize!(:update, @plat)
+    ids = params[:ids].split(",").map(&:to_i)
+    plats = Plat.where(id:ids)
+    map = plats.map { |e| [e.id,e] }.to_h
+    ids.each_with_index do |id,index|
+      plat = map[id]
+      plat.update_column(:sort,index)
+    end
   end
 
   private
