@@ -23,6 +23,10 @@ class Ability
           can :manage, Pkg do |pkg|
             pkg.user_id == user.id || pkg.plat.user_id == user.id || pkg.app.user_id == user.id
           end
+
+          if user.editor?
+            can :sort, Plat
+          end
         end
     end
     #

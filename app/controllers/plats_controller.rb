@@ -48,7 +48,7 @@ class PlatsController < ApplicationController
   end
 
   def api_sort
-    authorize!(:update, @plat)
+    authorize!(:sort, Plat)
     ids = params[:ids].split(",").map(&:to_i)
     plats = Plat.where(id:ids)
     map = plats.map { |e| [e.id,e] }.to_h

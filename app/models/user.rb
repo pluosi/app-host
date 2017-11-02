@@ -36,6 +36,7 @@ class User < ApplicationRecord
 
   enum role: {
     admin: 'admin',
+    editor: 'editor',
     user: 'user'
   }
 

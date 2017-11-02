@@ -55,7 +55,7 @@
 <script type="text/javascript">
   $(function(){
     //修改循序
-    <% if can? :update, @app %>
+    <% if can? :sort, Plat %>
       var add_btn = null;
       var list = document.getElementById("nav_ul");
       Sortable.create(list,
