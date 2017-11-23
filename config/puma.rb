@@ -17,7 +17,7 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 
 pidfile "tmp/pids/puma.pid"
 
-stdout_redirect '/var/log/puma.log', '/var/log/puma.error.log', true
+stdout_redirect 'log/puma.access.log', 'log/puma.error.log', true
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
