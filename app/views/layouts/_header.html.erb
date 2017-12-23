@@ -29,6 +29,13 @@
               <li>
                 <%=link_to 'ApiToken', api_token_user_path(current_user) %>
               </li>
+
+              <% if current_user.admin? %>
+                <li>
+                  <%=link_to '用户管理', users_path %>
+                </li>  
+              <% end %>
+
               <li>
                 <%=link_to '登出', session_path(current_user), form_class: "delete_btn", data: {:confirm => 'Are you sure?'}, :method => :delete %>
               </li>

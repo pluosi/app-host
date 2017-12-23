@@ -1,0 +1,23 @@
+.user.index{
+  background-color: #fff;
+  min-height: 100vh;
+
+  min-height:-moz-calc(100vh - 95px); 
+  min-height:-webkit-calc(100vh - 95px); 
+  min-height: calc(100vh - 95px);
+  display: block;
+  
+  color: #666;
+  font-size: 15px;
+  max-width: 100%;
+  word-break:break-all;
+  h3,h4{
+    color: #333;
+  }
+  @media (min-width: 900px){
+    margin-top: 40px;
+  }
+  .user-add{
+    margin: 8px 0px
+  }
+}

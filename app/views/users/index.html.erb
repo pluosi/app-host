@@ -1,0 +1,35 @@
+<%=render 'layouts/header'%>
+<div class="container user index">
+
+  <%=link_to '新建', new_user_path ,class:"pull-right user-add" %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>用户</th>
+        <th>角色</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <th scope="row"><%=user.id%></th>
+          <td><%=user.email%></td>
+          <td><%=user.role%></td>
+          <td>
+            <% if can? :update, user, current_user %>
+              <%=link_to '编辑', edit_user_path(user) %>
+            <% end %>
+
+            <% if can? :destroy, user, current_user %>
+              <%=link_to '删除', user_path(user) ,class:"btn-danger",data: {:confirm => 'Are you sure?'}, :method => :delete %>
+            <% end %>
+          </td>
+        </tr>        
+      <%end%>
+    </tbody>
+  </table>
+
+
+</div>

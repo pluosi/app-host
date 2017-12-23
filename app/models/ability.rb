@@ -8,6 +8,19 @@ class Ability
 
     if user.admin?
         can :manage, :all
+
+        cannot :manage, User
+
+        can :update, User do |user,current_user|
+          current_user.admin?
+        end
+
+        can :destroy, User do |user,current_user|
+          current_user.admin? && user.id != current_user.id
+        end
+
+        can :create, User
+        
     else
         can :read, :all
         if user.persisted? 
@@ -27,6 +40,8 @@ class Ability
           if user.editor?
             can :sort, Plat
           end
+
+
         end
     end
     #
