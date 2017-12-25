@@ -5,6 +5,15 @@
 # 介绍
 一个轻量级的包托管网站，app-host 主要用于 iOS 和 Android 的包管理，作用类似于fir.im，不同之处是可以自由部署在内网，方便了公司项目保密。并且代码开源也可以方便根据各自需求进行定制化开发。
 
+# 目前能实现
+1.新建包<br>
+2.包底下新建渠道（ iOS，安卓，各种环境都归为渠道，例如 iOS 生产，iOS 沙盒，iOS 越狱版，Android 生产等）<br>
+3.渠道下面上传包<br>
+4.帐号和权限管理<br>
+5.api 和页面表单上传包<br>
+6.解析包信息，包括 iOS 的包类型 ADHOC 还是 release，udid，安卓的签名证书等<br>
+7.我编不下去了···哈哈~~<br>
+
 # Usage
 1. 改名 settings.local.example.yml 为 config/settings.local.yml
 2. 修改 config/settings.local.yml 中 `PROTOCOL` 和 `HOST` ,本地测试PROTOCOL可以为 http,生产环境必须设置为https,因为 iOS OTA 安装需要
