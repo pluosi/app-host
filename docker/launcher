@@ -71,8 +71,13 @@ init_secret_key(){
   fi
 }
 
+init_sharedir(){
+  mkdir -p "$sharedir"
+}
 
 bootstrap() {
+
+    init_sharedir
 
     init_secret_key
 
