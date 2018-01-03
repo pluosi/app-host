@@ -14,14 +14,24 @@ module AppHost
     config.time_zone = 'Beijing'
     
     config.i18n.default_locale = "zh-CN"
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    config.eager_load_paths += %W( #{config.root}/lib/parsers #{config.root}/lib )
 
-    # config.autoload_paths += %W(#{config.root}/lib/parsers)
+    config.eager_load_paths += %W( #{config.root}/lib/parsers #{config.root}/lib #{config.root}/lib/app_host )
+
+    config.autoload_paths += %W( #{config.root}/lib )
 
     config.action_mailer.default_url_options = { :host => Settings.HOST }
 
+  end
+end
+
+module AppHost
+  class << self
+    def version
+      "0.1.1"
+    end
   end
 end

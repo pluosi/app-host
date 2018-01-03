@@ -1,0 +1,9 @@
+# comment
+.git
+.gitignore
+/shared
+!shared/production.sqlite3
+/public/uploads
+/log
+/tmp
+/screenshots

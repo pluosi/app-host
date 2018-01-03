@@ -1,0 +1,187 @@
+#!/bin/bash
+
+usage () {
+  echo "Usage: launcher COMMAND [--docker-args STRING]"
+  echo "Commands:"
+  echo "    start:      Start the container"
+  echo "    stop:       Stop a running container"
+  echo "    restart:    Restart the container"
+  echo "    destroy:    Stop and remove the container"
+  echo "    bootstrap:  Bootstrap the container based on a template"
+  echo "    rebuild:    Rebuild the container (destroy old, bootstrap, start new)"
+  echo 
+  echo "    console:    Rails console in containner"
+  echo "    ssh:        attach to containner"  
+  echo
+  echo "Options:"
+  echo "    --docker-args              Extra arguments to pass when running docker"
+  exit 1
+}
+
+set -e
+set -o pipefail
+
+version=0.1.1
+local_port=3000
+local_image=local_pluosi/app_host:$version
+container_name=app_host
+dockerdir=$(cd "$(dirname "$(dirname $0)")"; pwd -P)
+sharedir=$dockerdir/shared
+local_settings_file=$dockerdir/config/settings.local.yml
+
+loginfo() {
+    if [[ -t 1 ]]; then
+        >&2 printf "[$(date +'%Y-%m-%d %H:%M:%S')] \033[32m%s\033[m\n" "$1"
+    else
+        >&2 echo "[$(date +'%Y-%m-%d %H:%M:%S')] " "$1"
+    fi
+}
+
+err_and_quit () {
+    if [[ -t 1 ]]; then
+        >&2 printf "\n\n\033[33mError: %s\033[m\n\n" "$1"
+    else
+        >&2 echo "$1"
+    fi
+    exit 1
+}
+
+console(){
+  docker exec -it $container_name rails c
+}
+
+ssh(){
+  docker exec -it $container_name bash
+}
+
+set_ruby_version(){
+  ruby_version=$(cat .ruby-version)
+}
+
+init_secret_key(){
+  #init random rails secret_key_base
+  flag="#-- secret_key_base create by laucher --"
+  existing=$(cat $local_settings_file | grep "$flag" || true)
+  if [[ $existing == "" ]]; then
+    set_ruby_version
+    secret_key_base=$(docker run --rm ruby:$ruby_version ruby -e "require 'securerandom';puts SecureRandom.hex 64")
+    echo "" >> $local_settings_file
+    echo "$flag" >> $local_settings_file
+    echo "SECRET_KEY_BASE: $secret_key_base" >> $local_settings_file
+  fi
+}
+
+
+bootstrap() {
+
+    init_secret_key
+
+    rebuild
+}
+
+rebuild(){
+    loginfo "Now building the local docker image."
+    
+    if [[ "$quiet" == "" ]]; then
+      (
+        set -x
+        docker build -f Dockerfile -t $local_image  .
+      )
+    else
+      (
+        set -x
+        docker build -f Dockerfile -t $local_image  . >/dev/null
+      )
+    fi
+    
+    loginfo "Image built."
+}
+
+destroy(){
+    (
+        set -x
+        docker stop -t 10 $container_name || true
+        docker rm $container_name
+    )
+}
+
+start(){
+    existing=$(docker ps | awk '{ print $(NF) }' | grep "$container_name" || true)
+
+    if [[ $existing != "" ]]; then
+        loginfo "Nothing to do, your container $container_name has already started!"
+        exit 0
+    fi
+
+    existing=$(docker ps -a | awk '{ print $(NF) }' | grep "$container_name" || true)
+
+    if [[ $existing != "" ]]; then
+        loginfo "starting up existing container"
+        (
+            set -x
+            docker start $container_name
+        )
+        exit 0
+    fi
+
+    loginfo "Starting up new server container"
+    (
+        set -x
+        docker run $user_args -it -d --name $container_name -h $container_name -v $dockerdir/shared:/app/shared -p $local_port:8686 $local_image
+    )
+}
+
+stop(){
+    (
+        set -x
+        docker stop -t 10 $container_name
+    )
+}
+
+restart() {
+    stop
+    start
+}
+
+check_prereqs() {
+    # check config
+    if [[ ! -e $local_settings_file  ]]; then
+        err_and_quit "The file $local_settings_file doesn't exist. Please copy config/settings.local.example.yml to config/settings.local.yml and write your config !"
+    fi
+
+    # check docker
+    if ! which docker >/dev/null; then
+        err_and_quit "Docker is not installed?"
+        err_and_quit "See https://docs.docker.com"
+    fi
+}
+
+
+main() {
+    local action
+    while [[ $# -gt 0 ]]
+    do
+        case "$1" in
+            bootstrap|start|stop|restart|destroy|rebuild|console|ssh)
+                                                action=${1//-/_}            ; shift 1 ;;
+            -h|--help)                          ( usage ; exit 1)           ; shift 1 ;;
+            -v|--verbose)                       verbose=true                ; shift 1 ;;
+            --docker-args)                      user_args=$2                ; shift 2 ;;
+            *)                                  err_and_quit "Argument error. Please see help." ;;
+        esac
+    done
+
+    quiet="--quiet"
+    if [[ $verbose == "true" ]]; then
+        quiet=""
+    fi
+
+    if [[ "$action" == "" ]]; then
+      usage
+    else
+      "$action"
+    fi
+}
+
+check_prereqs
+main "$@"

@@ -1,2 +1,4 @@
 PROTOCOL: "http://"
 HOST: "localhost:3000"
+
+# SECRET_KEY_BASE: "可以运行rake secret,docker用户会自动生成，可忽略"
