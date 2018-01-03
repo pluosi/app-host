@@ -3,7 +3,7 @@ language: ruby
 rvm:
   - 2.5.0
 
-install: gem install rails
+install: bundle install
 
 before_install:
   - gem update --system
