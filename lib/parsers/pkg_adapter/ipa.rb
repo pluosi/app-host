@@ -16,12 +16,11 @@ module PkgAdapter
           #   # content = entry.get_input_stream.read if entry.get_input_stream.respond_to? :read
           # end
 
-          profile_contents = zip_file.glob('Payload/*.app/embedded.mobileprovision').first.get_input_stream.read
-          @profile = ConfigParser.mobileprovision profile_contents
+          provision = zip_file.glob('Payload/*.app/embedded.mobileprovision').first
+          @provision = provision ? ConfigParser.mobileprovision(provision.get_input_stream.read) : {}
 
-          plist = zip_file.glob('Payload/*.app/Info.plist').first.get_input_stream.read
-          
-          @plist = ConfigParser.plist plist
+          plist = zip_file.glob('Payload/*.app/Info.plist').first
+          @plist = plist ? ConfigParser.plist(plist.get_input_stream.read) : {}
 
           entry = zip_file.glob('Payload/*.app/AppIcon[6,4]0x[6,4]0@[2,3]x.png').last
           if entry
@@ -73,24 +72,35 @@ module PkgAdapter
     end
 
     def ext_info
-      devices = @profile["ProvisionedDevices"];
-      info = {
-        "包类型" => devices ? "Ad-hoc" : "Release",
-        "包信息" => [
-          "包名: #{self.app_bundle_id}",
-          "体积: #{app_size_mb}MB",
-          "MD5: #{pkg_mb5}"
-        ],
-        "描述文件" => [
-          "名称: #{@profile['Name']}",
-          "TeamName: #{@profile['TeamName']}",
-          "TeamID: #{@profile['TeamIdentifier'].join(',')}",
-          "创建时间: #{@profile['CreationDate']}",
-          "过期时间: #{@profile['ExpirationDate']}",
-          "UUID: #{@profile['UUID']}",
-        ],
-        "Entitlements" => @profile['Entitlements'].map{|k,v| "#{k}: #{v}" },
-      }
+      if @provision.present?
+        devices = @provision["ProvisionedDevices"];
+        info = {
+          "包类型" => devices ? "Ad-hoc" : "Release",
+          "包信息" => [
+            "包名: #{self.app_bundle_id}",
+            "体积: #{app_size_mb}MB",
+            "MD5: #{pkg_mb5}"
+          ],
+          "描述文件" => [
+            "名称: #{@provision['Name']}",
+            "TeamName: #{@provision['TeamName']}",
+            "TeamID: #{@provision['TeamIdentifier']&.join(',')}",
+            "创建时间: #{@provision['CreationDate']}",
+            "过期时间: #{@provision['ExpirationDate']}",
+            "UUID: #{@provision['UUID']}",
+          ],
+          "Entitlements" => @provision['Entitlements']&.map{|k,v| "#{k}: #{v}" },
+        }
+      else
+        info = {
+          "包类型" => "未知",
+          "包信息" => [
+            "包名: #{self.app_bundle_id}",
+            "体积: #{app_size_mb}MB",
+            "MD5: #{pkg_mb5}"
+          ]
+        }
+      end
       if devices
         info["包含设备 (#{devices.count}台)"] = devices
       end
