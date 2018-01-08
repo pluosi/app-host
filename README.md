@@ -20,7 +20,7 @@
 
 ## 用法 1 Docker
 ```
-1. > git clone git@github.com:pluosi/app-host.git /opt/app-host
+1. > git clone https://github.com/pluosi/app-host.git /opt/app-host
 2. > cd /opt/app-host
 3. > cp config/settings.local.example.yml config/settings.local.yml
 4. 修改 config/settings.local.yml 中 `PROTOCOL` 和 `HOST` ,本地测试PROTOCOL可以为 http,生产环境必须设置为https,因为 iOS OTA 安装需要
@@ -32,7 +32,7 @@
 
 ## 用法 2 源码运行
 ```
-1. > git clone git@github.com:pluosi/app-host.git /opt/app-host
+1. > git clone https://github.com/pluosi/app-host.git /opt/app-host
 2. > cd /opt/app-host
 3. > cp config/settings.local.example.yml config/settings.local.yml
 4. 修改 config/settings.local.yml 中 `PROTOCOL` 和 `HOST` ,本地测试PROTOCOL可以为 http,生产环境必须设置为https,因为 iOS OTA 安装需要
