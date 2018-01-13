@@ -85,7 +85,7 @@ class Pkg < ApplicationRecord
     @ext_info ||= parser.ext_info
   end
 
-  def download_url_for_mobile
+  def install_url
     if ios?
       "itms-services://?action=download-manifest&url=#{Settings.PROTOCOL}#{Settings.HOST}#{Rails.application.routes.url_helpers.manifest_pkg_path(self)}.plist"    
     else
