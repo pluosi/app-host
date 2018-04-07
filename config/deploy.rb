@@ -11,7 +11,7 @@ require 'mina/rvm'    # for rvm support. (https://rvm.io)
 
 set :domain, '192.168.66.248'
 set :deploy_to, '/app'
-set :repository, 'git@git.ppdaicorp.com:beijing/app-host.git'
+set :repository, 'git@git.ppdaicorp.com:beijing/ops/app-host.git'
 set :branch, 'master'
 
 # Optional settings:
@@ -25,7 +25,7 @@ set :shared_files, fetch(:shared_files, []).push('config/database.yml', 'config/
 
 # This task is the environment that is loaded for all remote run commands, such as
 # `mina deploy` or `mina rake`.
-task :environment do
+task :remote_environment do
   # If you're using rbenv, use this to load the rbenv environment.
   # Be sure to commit your .ruby-version or .rbenv-version to your repository.
   # invoke :'rbenv:load'
@@ -40,7 +40,7 @@ end
 
 # Put any custom commands you need to run at setup
 # All paths in `shared_dirs` and `shared_paths` will be created on their own.
-task :setup => :environment do
+task :setup => :remote_environment do
   command %{gem install bundler}
     # command %{sudo gem install god}
     # command %{sudo mkdir -p /etc/god/conf.d/}
@@ -52,7 +52,7 @@ task :setup => :environment do
 end
 
 desc "Deploys the current version to the server."
-task :deploy => :environment do
+task :deploy => :remote_environment do
   # uncomment this line to make sure you pushed your local branch to the remote origin
   # invoke :'git:ensure_pushed'
   deploy do
@@ -82,21 +82,21 @@ end
 namespace :puma do
 
   desc 'start puma'
-  task :start => :environment do
+  task :start => :remote_environment do
     in_path(fetch(:current_path)) do
       command %{bundle exec puma --config ./config/puma.rb -e production -d}
     end
   end
 
   desc 'stop puma'
-  task :stop => :environment do
+  task :stop => :remote_environment do
     in_path(fetch(:current_path)) do
       command %{bundle exec pumactl stop}
     end
   end
 
   desc 'restart puma'
-  task :restart => :environment do
+  task :restart => :remote_environment do
     command %{bundle exec pumactl stop || true}
     invoke :'puma:start'
   end
