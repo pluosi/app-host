@@ -31,4 +31,7 @@ Rails.application.routes.draw do
   post "api/pkgs" => "pkgs#api_create"
 
   put "api/plat/sort" => "plats#api_sort"
+
+  post "udid" => "application#udid_callback"
+  get "udid/:udid" => "application#udid"
 end
