@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
     profile_service_response = request.raw_post.to_s
 
-    plistBegin = profile_service_response.index('<?xml version="1.0"')
+    plistBegin = profile_service_response.index('<?xml version=')
     plistEnd = profile_service_response.index('</plist>') + 8
 
     plist = profile_service_response[plistBegin...plistEnd]
@@ -29,7 +29,8 @@ class ApplicationController < ActionController::Base
 
 
     udid = profile_service_attributes.value['UDID'].value
-    redirect_to "#{Settings.PROTOCOL}#{Settings.HOST}/udid/#{udid}"
+    redirect_to "#{Settings.PROTOCOL}#{Settings.HOST}/udid/#{udid}", :status => 301
+    
   end
 
   def udid
