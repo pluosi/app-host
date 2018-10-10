@@ -7,6 +7,13 @@ class ApplicationController < ActionController::Base
 
 
   def udid_callback
+
+    profile_service_response = OpenSSL::PKCS7.new request.raw_post
+
+    # profile_service_response.verify profile_service_response.certificates, AppleDeviceX509Store, nil, OpenSSL::PKCS7::NOINTERN | OpenSSL::PKCS7::NOCHAIN
+
+    profile_service_attributes = CFPropertyList::List.new(:data => profile_service_response.data).value
+
     # Rails.logger.info "------udid_callback start----"
     # Rails.logger.info request.raw_post
     # Rails.logger.info "------2----"
@@ -17,10 +24,7 @@ class ApplicationController < ActionController::Base
       file.write(request.raw_post)
     end
 
-    plist = PkgAdapter::ConfigParser.plist(request.raw_post)
-
-    # udid = "#{request.raw_post}"
-    udid = plist["UDID"]
+    udid = profile_service_attributes.value['UDID'].value
     redirect_to "#{Settings.PROTOCOL}#{Settings.HOST}/udid/#{udid}"
   end
 

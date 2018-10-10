@@ -1,6 +1,7 @@
 GEM
   remote: https://gems.ruby-china.com/
   specs:
+    CFPropertyList (3.0.0)
     actioncable (5.1.2)
       actionpack (= 5.1.2)
       nio4r (~> 2.0)
@@ -208,6 +209,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  CFPropertyList
   bcrypt (~> 3.1.7)
   bootstrap-sass
   browser
