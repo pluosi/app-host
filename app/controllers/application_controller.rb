@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
       file.write(request.raw_post)
     end
 
-    plist = ConfigParser.plist(request.raw_post)
+    plist = PkgAdapter::ConfigParser.plist(request.raw_post)
 
     # udid = "#{request.raw_post}"
     udid = plist["UDID"]
