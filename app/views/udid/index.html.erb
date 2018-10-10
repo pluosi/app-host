@@ -3,10 +3,10 @@
   <% if @udid %>
     <sapn class="udid-span">
       UDID “ <strong class="red"><%=@udid%></strong> ”
-    </sapn>  
+    </sapn>
   <% else %>
     <sapn class="udid-span">
-      <%=link_to "授权获取UDID", "" ,class:"btn btn-primary ui-plat" %>
+      <%=link_to "授权获取UDID", "#{mobileconfig_udid_index_path}.mobileconfig" ,class:"btn btn-primary ui-plat" %>
     </sapn>
   <% end %>
 </div>

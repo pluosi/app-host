@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>PayloadContent</key>
+        <dict>
+            <key>URL</key>
+            <string>__URL__</string>
+            <key>DeviceAttributes</key>
+            <array>
+                <string>UDID</string>
+                <string>IMEI</string>
+                <string>ICCID</string>
+                <string>VERSION</string>
+                <string>PRODUCT</string>
+            </array>
+        </dict>
+        <key>PayloadOrganization</key>
+        <string>apple.com</string>
+        <key>PayloadDisplayName</key>
+        <string>APP HOST</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+        <key>PayloadUUID</key>
+        <string>4d4dc30d-cc8f-11e8-8847-00163e0e27d5</string>
+        <key>PayloadIdentifier</key>
+        <string>com.plsi.ios-config-server.4d4dc30d-cc8f-11e8-8847-00163e0e27d5</string>
+        <key>PayloadDescription</key>
+        <string>OTA助手，获取 UDID</string>
+        <key>PayloadType</key>
+        <string>Profile Service</string>
+    </dict>
+</plist>

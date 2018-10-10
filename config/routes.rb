@@ -22,17 +22,18 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :udid, only:[:create,:index] do
+    collection do
+      get "mobileconfig"
+    end
+  end
+
   resources :sessions, only: [:new, :create, :destroy]
   
-  # , only:[:index,:show,:create,:new]
-
   root "apps#index"
 
   post "api/pkgs" => "pkgs#api_create"
 
   put "api/plat/sort" => "plats#api_sort"
 
-  post "udid" => "application#udid_callback"
-  get "udid" => "application#udid"
-  get "udid/:udid" => "application#udid"
 end
