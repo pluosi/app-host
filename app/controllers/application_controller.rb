@@ -8,29 +8,11 @@ class ApplicationController < ActionController::Base
 
   def udid_callback
 
-    profile_service_response = request.raw_post.to_s
-
-    plistBegin = profile_service_response.index('<?xml version=')
-    plistEnd = profile_service_response.index('</plist>') + 8
-
-    plist = profile_service_response[plistBegin...plistEnd]
-
-
-    Rails.logger.info "------profile_service_response start----"
-    Rails.logger.info profile_service_response
-    Rails.logger.info "------profile_service_response end----"
-    Rails.logger.info "#{plistBegin} - #{plistEnd}"
-    Rails.logger.info "------"
-    Rails.logger.info "#{plist}"
-    Rails.logger.info "------profile_service_response.data end----"
-
-
-    profile_service_attributes = CFPropertyList::List.new(:data => plist).value
-
+    profile_service_attributes = PkgAdapter::ConfigParser.mobileconfig(request.raw_post)
 
     udid = profile_service_attributes.value['UDID'].value
     redirect_to "#{Settings.PROTOCOL}#{Settings.HOST}/udid/#{udid}", :status => 301
-    
+
   end
 
   def udid

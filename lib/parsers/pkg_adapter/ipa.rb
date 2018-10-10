@@ -110,6 +110,15 @@ module PkgAdapter
   end
 
   class ConfigParser
+
+    def self.mobileconfig(stream)
+      #稳定后迁移
+      plist_begin = stream.index('<?xml version=')
+      plist_end = stream.index('</plist>') + 8
+      profile = stream[plist_begin...plist_end]
+      CFPropertyList::List.new(:data => profile).value
+    end
+
     def self.mobileprovision(stream)
       # security cms -D -i Reutte.app/embedded.mobileprovision
       profile = stream.slice(stream.index('<?'), stream.length)
