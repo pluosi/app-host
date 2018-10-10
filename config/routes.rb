@@ -33,5 +33,6 @@ Rails.application.routes.draw do
   put "api/plat/sort" => "plats#api_sort"
 
   post "udid" => "application#udid_callback"
+  get "udid" => "application#udid"
   get "udid/:udid" => "application#udid"
 end

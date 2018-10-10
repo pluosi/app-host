@@ -1,6 +1,12 @@
 <%=render 'layouts/header'%>
-<div class="container">
-  <div class="udid-div">
-    <%=@udid%>
-  </div>
+<div class="container udid">
+  <% if @udid %>
+    <sapn class="udid-span">
+      UDID “ <strong class="red"><%=@udid%></strong> ”
+    </sapn>  
+  <% else %>
+    <sapn class="udid-span">
+      <%=link_to "授权获取UDID", "" ,class:"btn btn-primary ui-plat" %>
+    </sapn>
+  <% end %>
 </div>
