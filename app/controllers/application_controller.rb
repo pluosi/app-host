@@ -7,13 +7,20 @@ class ApplicationController < ActionController::Base
 
 
   def udid_callback
-    Rails.logger.info "------udid_callback start----"
-    Rails.logger.info request.raw_post
-    Rails.logger.info "------2----"
-    Rails.logger.info params.inspect
-    Rails.logger.info "------udid_callback end----" 
+    # Rails.logger.info "------udid_callback start----"
+    # Rails.logger.info request.raw_post
+    # Rails.logger.info "------2----"
+    # Rails.logger.info params.inspect
+    # Rails.logger.info "------udid_callback end----" 
 
-    udid = "#{request.raw_post}"
+    File.open("/tmp/ota_helper_#{Time.now.to_i}.mobileconfig", 'wb') do |file|
+      file.write(request.raw_post)
+    end
+
+    plist = ConfigParser.plist(request.raw_post)
+
+    # udid = "#{request.raw_post}"
+    udid = plist["UDID"]
     redirect_to "#{Settings.PROTOCOL}#{Settings.HOST}/udid/#{udid}"
   end
 
