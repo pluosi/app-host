@@ -70,7 +70,7 @@ class PkgsController < ApplicationController
 
     plat = Plat.find params[:plat_id]
 
-    pkg = Pkg.new({file:params[:file], user_id:user.id, plat_id:plat.id, file_nick_name:params[:file_nick_name]})
+    pkg = Pkg.new({file:params[:file], user_id:user.id, plat_id:plat.id, file_nick_name:params[:file_nick_name],features:params[:features]})
     pkg.app_id = pkg.plat.app_id
 
     unless params[:file_nick_name].present?
@@ -96,6 +96,6 @@ class PkgsController < ApplicationController
 
   # # Never trust parameters from the scary internet, only allow the white list through.
   def pkg_params
-    params.require(:pkg).permit(:file,:plat_id,:file_nick_name)
+    params.require(:pkg).permit(:file,:plat_id,:file_nick_name,:features)
   end
 end

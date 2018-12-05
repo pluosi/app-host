@@ -45,6 +45,20 @@
   </div>
 
   <% cache [@pkg,'v1'] do %>
+
+    <% if @pkg.features.present? %>
+      <div class="features">
+        <div class="wrap">
+          <h3 class="title">变更描述:</h3>
+          <p class="info">
+            <%@pkg.features.split("\n").each do |line|%>
+              <%=line%><br/>
+            <%end%>
+          </p>
+        </div>
+      </div>
+    <% end %>
+
     <% @ext_info = @pkg.ext_info %>
     <% if @ext_info.present? %>
       <div class="extend-info">
