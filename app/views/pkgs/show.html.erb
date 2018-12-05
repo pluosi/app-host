@@ -1,6 +1,17 @@
 <%=render 'layouts/header'%>
 
 <div class="pkg show">
+
+  <ul class="breadcrumb container">
+    <li>
+      <%=link_to @pkg.app.name, app_path(@pkg.app)%>
+    </li>
+    <li>
+      <%=link_to @pkg.plat.name, app_plat_path(@pkg.app,@pkg.plat)%>
+    </li>
+    <li class="active"><%=@pkg.name%></li>
+  </ul>
+
   <div class="first-page">
     <div class="info-container">
       <div class="app-info">
@@ -101,8 +112,7 @@
     $(".open-icon").click(function(event) {
       $(".extend-info>.wrap>.info").slideToggle('fast')
     });
-
-  })();
+  });
 
   
 

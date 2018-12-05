@@ -37,7 +37,7 @@
 3. > cp config/settings.local.example.yml config/settings.local.yml
 4. 修改 config/settings.local.yml 中 `PROTOCOL` 和 `HOST` ,本地测试PROTOCOL可以为 http,生产环境必须设置为https,因为 iOS OTA 安装需要
 5. bundle install
-6. rails s
+6. rails s 运行测试环境
 7. 关于部署到生成环境的话请参照一下 rails puma 部署等教程，需要修改一下 config/deply.rb 的部署地址
 8. 尝试访问 http://localhost:3000
 ```

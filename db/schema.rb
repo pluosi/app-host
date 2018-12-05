@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20171102093445) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "desc"
-    t.integer "channels_count", default: 0
     t.integer "palts_count", default: 0
     t.integer "packages_count", default: 0
     t.integer "user_id"
