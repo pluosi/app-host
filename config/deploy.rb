@@ -11,7 +11,7 @@ require 'mina/rvm'    # for rvm support. (https://rvm.io)
 
 set :domain, '192.168.66.248'
 set :deploy_to, '/app'
-set :repository, 'git@git.ppdaicorp.com:beijing/app-host.git'
+set :repository, 'git@github.com:pluosi/app-host.git'
 set :branch, 'master'
 
 # Optional settings:
