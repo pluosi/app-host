@@ -22,7 +22,7 @@ module PkgAdapter
           plist = zip_file.glob('Payload/*.app/Info.plist').first
           @plist = plist ? ConfigParser.plist(plist.get_input_stream.read) : {}
 
-          entry = zip_file.glob('Payload/*.app/AppIcon[6,4]0x[6,4]0@[2,3]x.png').last
+          entry = zip_file.glob('Payload/*.app/AppIcon[6,4]0x[6,4]0@*.png').last
           if entry
             @app_icon = "#{path}/#{entry.name}"
             dirname = File.dirname(@app_icon)
