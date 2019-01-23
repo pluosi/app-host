@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   resources :apps do 
     resources :plats
+    collection do
+      get :archived
+    end
   end
 
   resources :users do

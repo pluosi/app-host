@@ -1,0 +1,11 @@
+<%=render 'layouts/header'%>
+
+<div class="container app index app-host-container">
+
+<%=render 'comoms/alert'%>
+
+<div class="row">  
+  <%= render partial: "cell", collection: @apps, as: :app %>
+</div>
+
+</div>

@@ -14,6 +14,13 @@
         <label for="app_name">应用名称*：</label>
         <%= f.text_field :name, class:"form-control", required:true %>
       </div>
+
+      <% if @app.persisted? %>
+      <div class="form-group">
+        <label for="app_archive">归档：</label>
+        <%= f.check_box :archived %>
+        </div>
+      <% end %>
       
     <%=f.submit @app.persisted? ? "保存" : "新建", class:"btn btn-primary ui-plat"%>
   <%end%>

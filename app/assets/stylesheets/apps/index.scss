@@ -24,6 +24,12 @@
             border: solid 1px #337ab7;
           }
         }
+        &.archived{
+          .cell-container{
+            border: solid 1px #D0D0D0;
+            color: #666;
+          }
+        }
         .actions{
           position: relative;
           top: -32px;

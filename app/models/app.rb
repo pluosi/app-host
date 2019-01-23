@@ -24,6 +24,9 @@ class App < ApplicationRecord
 
   acts_as_paranoid
 
+  scope :active, ->{ where(archived:false)}
+  scope :archived, ->{ where(archived:true)}
+
   has_many :pkgs, :dependent => :destroy
   has_many :plats, :dependent => :destroy
 

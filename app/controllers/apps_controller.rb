@@ -5,7 +5,8 @@ class AppsController < ApplicationController
     unless User.admin.exists?
       redirect_to new_user_path and return
     end
-    @apps = App.all
+    @apps = App.active.all
+    @has_archived = App.archived.count > 0
   end
 
   def show
@@ -38,6 +39,10 @@ class AppsController < ApplicationController
     redirect_to root_path
   end
 
+  def archived
+    @apps = App.archived.all
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_app
@@ -47,6 +52,6 @@ class AppsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def app_params
-    params.require(:app).permit(:name,:desc);
+    params.require(:app).permit(:name,:desc,:archived);
   end
 end
