@@ -15,6 +15,11 @@
       <label for="file_nick_name">重命名</label>
       <%= f.text_field :file_nick_name, class:"form-control", placeholder:"不填会直接使用文件名" %>
     </div>
+
+    <div class="form-group">
+      <label for="features">变更描述</label>
+      <%= f.text_area :features, class:"form-control", placeholder:"描述该包修改细节" %>
+    </div>
     
     <%=f.submit "上传", class:"btn btn-primary ui-plat"%>
   <%end%>

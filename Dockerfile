@@ -1,4 +1,4 @@
-FROM ruby:2.5.0
+FROM ruby:2.5.1
 
 ENV RAILS_ENV production
 
@@ -9,7 +9,7 @@ RUN apt-get update \
         nginx \
     && rm -rf /var/lib/apt/lists/*
 
-RUN gem sources --add https://gems.ruby-china.org --remove https://rubygems.org/
+RUN gem sources --add https://gems.ruby-china.com --remove https://rubygems.org/
 
 RUN gem install bundler
 

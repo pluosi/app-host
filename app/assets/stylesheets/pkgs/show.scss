@@ -1,4 +1,7 @@
 .pkg.show{
+  .breadcrumb{
+    background-color: rgba(0, 0, 0, 0);
+  }
   .first-page{
     height: 100vh;
     display: flex;
@@ -80,18 +83,13 @@
           float: right;
         }
       }
-      .info{
-        color: #9B9B9B;
-        font-size: 13px;
-        max-width: 100%;
-        word-break:break-all;
-      }
     }
   }
-  .history{
+  .history,.features{
     box-sizing: border-box;
     padding: 0 12px;
     width: 100%;
+    padding-bottom: 12px;
     .wrap{
       background-color: #F8F8F8;
       border-radius: 4px;
@@ -116,7 +114,14 @@
       }
     }
   }
-
+  .extend-info,.features{
+    .info{
+        color: #9B9B9B;
+        font-size: 13px;
+        max-width: 100%;
+        word-break:break-all;
+      }
+  }
   .footer{
     text-align: center;
     a{
