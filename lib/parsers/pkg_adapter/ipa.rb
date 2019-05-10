@@ -22,8 +22,29 @@ module PkgAdapter
           plist = zip_file.glob("Payload/*.app/Info.plist").first
           @plist = plist ? ConfigParser.plist(plist.get_input_stream.read) : {}
           
+          # read supported devices from UIDeviceFamily(https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/iPhoneOSKeys.html#//apple_ref/doc/uid/TP40009252-SW11)
+          supportDevices = @plist["UIDeviceFamily"]
+          
           # read icon name
-          appIconName = @plist["CFBundleIcons"]["CFBundlePrimaryIcon"]["CFBundleIconName"]
+          appIconName = "AppIcon"
+          
+          @supportDevicesDesc = ""
+          if supportDevices.count > 0
+              if supportDevices.count == 2
+                  # 通用安装包
+                  @supportDevicesDesc = "iPhone(iPod)/iPad"
+                  appIconName = @plist["CFBundleIcons"]["CFBundlePrimaryIcon"]["CFBundleIconName"]
+                  elsif supportDevices[0] == 1
+                  #iPhone设备
+                  @supportDevicesDesc = "iPhone(iPod)"
+                  appIconName = @plist["CFBundleIcons"]["CFBundlePrimaryIcon"]["CFBundleIconName"]
+                  else
+                  #iPad设备
+                  @supportDevicesDesc = "iPad"
+                  appIconName = @plist["CFBundleIcons~ipad"]["CFBundlePrimaryIcon"]["CFBundleIconName"]
+              end
+          end
+          
           entry = zip_file.glob("Payload/*.app/#{appIconName}[6,4]0x[6,4]0@*.png").last
           
           if entry
@@ -74,12 +95,17 @@ module PkgAdapter
       @plist["CFBundleIdentifier"]
     end
 
+    def app_supportDevices
+        @supportDevicesDesc
+    end
+
     def ext_info
       if @provision.present?
         devices = @provision["ProvisionedDevices"];
         info = {
           "包类型" => devices ? "Ad-hoc" : "Release",
           "包信息" => [
+            "支持安装设备: #{self.app_supportDevices}",
             "包名: #{self.app_bundle_id}",
             "体积: #{app_size_mb}MB",
             "MD5: #{pkg_mb5}"
