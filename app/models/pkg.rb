@@ -75,7 +75,7 @@ class Pkg < ApplicationRecord
   end
 
   def save_icon
-    if app_icon
+    if app_icon.end_with?(".png")
       self.icon.store!(File.new(app_icon))
       self.save  
     end

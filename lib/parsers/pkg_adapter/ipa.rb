@@ -21,7 +21,7 @@ module PkgAdapter
           
           plist = zip_file.glob("Payload/*.app/Info.plist").first
           @plist = plist ? ConfigParser.plist(plist.get_input_stream.read) : {}
-          
+
           # read icon name
           if @plist["CFBundleIcons"]
             app_icon_name = @plist["CFBundleIcons"]["CFBundlePrimaryIcon"]["CFBundleIconName"]  

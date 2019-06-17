@@ -41,7 +41,7 @@ class PkgsController < ApplicationController
     @plat.validate_pkg(pkg)
     
     pkg.save
-    redirect_to pkg_path pkg
+    redirect_to pkg_path(pkg)
   rescue => e
     redirect_to new_plat_pkg_path(@plat), :flash => { :error => e.message }
   end
@@ -50,7 +50,7 @@ class PkgsController < ApplicationController
     pkg = Pkg.find params[:id]
     authorize!(:destroy, pkg)
     pkg.destroy!
-    redirect_to app_plat_path pkg.app, pkg.plat
+    redirect_to app_plat_path(pkg.app, pkg.plat)
   end
 
 
