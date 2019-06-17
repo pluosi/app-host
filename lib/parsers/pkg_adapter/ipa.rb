@@ -23,8 +23,13 @@ module PkgAdapter
           @plist = plist ? ConfigParser.plist(plist.get_input_stream.read) : {}
           
           # read icon name
-          appIconName = @plist["CFBundleIcons"]["CFBundlePrimaryIcon"]["CFBundleIconName"]
-          entry = zip_file.glob("Payload/*.app/#{appIconName}[6,4]0x[6,4]0@*.png").last
+          if @plist["CFBundleIcons"]
+            app_icon_name = @plist["CFBundleIcons"]["CFBundlePrimaryIcon"]["CFBundleIconName"]  
+          else
+            app_icon_name = @plist["CFBundleIcons~ipad"]["CFBundlePrimaryIcon"]["CFBundleIconName"]
+          end
+
+          entry = zip_file.glob("Payload/*.app/#{app_icon_name}[6,4]0x[6,4]0@*.png").last
           
           if entry
             @app_icon = "#{path}/#{entry.name}"
