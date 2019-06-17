@@ -29,6 +29,8 @@ module PkgAdapter
             app_icon_name = @plist["CFBundleIcons~ipad"]["CFBundlePrimaryIcon"]["CFBundleIconName"]
           end
 
+          byebug
+          
           entry = zip_file.glob("Payload/*.app/#{app_icon_name}[6,4]0x[6,4]0@*.png").last
           
           if entry

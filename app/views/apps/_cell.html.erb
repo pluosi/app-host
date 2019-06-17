@@ -1,5 +1,5 @@
 <div class="col-md-4 cell">
-
+  <% last_pkg = app.pkgs.last%>
   <a href="<%=app_plats_path(app)%>">
     <div class="cell-container">
       <div class="icon">
@@ -13,8 +13,8 @@
         <span class="title">
           <%=app.name%>
           <span class="date-label">
-            <% if app.pkgs.last.present? %>
-              <%=time_ago_in_words(app.pkgs.last.updated_at)%>前
+            <% if last_pkg.present? %>
+              <%=time_ago_in_words(last_pkg.updated_at)%>前
             <% end %>
           </span>
         </span>
@@ -26,9 +26,9 @@
         <span class="sub-title">
           渠道数：<span><%=app.plats.count%></span>
         </span>
-        <% if app.pkgs.last.present? %>
+        <% if last_pkg.present? %>
           <span class="sub-title visible-md visible-lg">
-            最新包：<span><%=app.pkgs.last.build%> <%=app.pkgs.last.plat&.name%></span>
+            最新包：<span><%=last_pkg.build%> <%=last_pkg.plat&.name%></span>
           </span>
         <% end %>
        

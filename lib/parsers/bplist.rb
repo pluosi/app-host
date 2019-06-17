@@ -156,7 +156,7 @@ module Bplist
 					case cmd >> 4
 					when 0b0001	# int
 						#len = 2 ** len
-						data = parseInt(@bplist, off)
+						data, _ = parseInt(@bplist, off)
 						#puts "INT: " + readVar(@bplist, doff, len).to_s
 					when 0b0010	# real
 						len = 2 ** len
