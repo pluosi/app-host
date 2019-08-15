@@ -137,7 +137,7 @@
       $(".extend-info>.wrap>.info").slideToggle('fast')
     });
 
-    if (!isWeixin()) {
+    if (isWeixin()) {
       $(".download-btn").click(function() {
         $(".wx-mask").show();
         return false;
