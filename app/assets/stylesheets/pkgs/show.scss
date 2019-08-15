@@ -1,4 +1,19 @@
 .pkg.show{
+  .wx-mask{
+    display: none;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    background-color: rgba(0,0,0,0.6);
+    img{
+      width: 80%;
+      height: auto;
+      float: right;
+    }
+  }
   .breadcrumb{
     background-color: rgba(0, 0, 0, 0);
   }

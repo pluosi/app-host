@@ -2,6 +2,10 @@
 
 <div class="pkg show">
 
+  <div class="wx-mask">
+    <%=image_tag("weixin_mask.png")%>
+  </div>
+
   <ul class="breadcrumb container">
     <li>
       <%=link_to @pkg.app.name, app_path(@pkg.app)%>
@@ -120,15 +124,27 @@
 </div>
 
 <script type="text/javascript">
+
+  var isWeixin = function () { //判断是否是微信
+    var ua = navigator.userAgent.toLowerCase();
+    return ua.match(/MicroMessenger/i) == "micromessenger";
+  };
+
   $(function(){
     $('#qrcode').empty();
     new QRCode(document.getElementById("qrcode"), "<%=pkg_url(@pkg)%>");
     $(".open-icon").click(function(event) {
       $(".extend-info>.wrap>.info").slideToggle('fast')
     });
-  });
 
-  
+    if (!isWeixin()) {
+      $(".download-btn").click(function() {
+        $(".wx-mask").show();
+        return false;
+      })
+    }
+
+  });
 
 </script>
 
