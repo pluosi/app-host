@@ -23,9 +23,9 @@ module PkgAdapter
           @plist = plist ? ConfigParser.plist(plist.get_input_stream.read) : {}
 
           # read icon name
-          if @plist["CFBundleIcons"]
+          if @plist["CFBundleIcons"] && @plist["CFBundleIcons"]["CFBundlePrimaryIcon"]
             app_icon_name = @plist["CFBundleIcons"]["CFBundlePrimaryIcon"]["CFBundleIconName"]  
-          else
+          elsif @plist["CFBundleIcons~ipad"] && @plist["CFBundleIcons~ipad"]["CFBundlePrimaryIcon"]
             app_icon_name = @plist["CFBundleIcons~ipad"]["CFBundlePrimaryIcon"]["CFBundleIconName"]
           end
 
