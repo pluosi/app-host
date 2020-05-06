@@ -46,8 +46,32 @@ class PkgsController < ApplicationController
     redirect_to new_plat_pkg_path(@plat), :flash => { :error => e.message }
   end
 
+  def move_deleted_pkg_file(file_path: file_path, delete_tag: delete_tag)
+    if file_path == nil || File.exist?(file_path) == false
+      return
+    end
+
+    file_parent_dir = File.dirname(file_path)
+    if delete_tag
+      FileUtils.rm_rf(file_parent_dir)
+    else
+      back_up_dir = File.join(File.dirname(file_parent_dir), "backup")
+      dest_path = File.join(back_up_dir, File.basename(file_parent_dir))
+      if File.exist?(dest_path) == true
+        FileUtils.rm_rf(dest_path)
+      end
+      FileUtils.mkdir_p(back_up_dir)
+      FileUtils.mv(file_parent_dir, back_up_dir)
+    end
+  end
+
   def destroy
     pkg = Pkg.find params[:id]
+
+    #移动/删除安装包和图标文件到指定目录，可以使用定时脚本按照一定规则清理删除的安装包文件
+    move_deleted_pkg_file(file_path:pkg.file.path, delete_tag:false)
+    move_deleted_pkg_file(file_path:pkg.icon.path, delete_tag:true)
+
     authorize!(:destroy, pkg)
     pkg.destroy!
     redirect_to app_plat_path(pkg.app, pkg.plat)

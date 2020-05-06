@@ -29,7 +29,11 @@ module PkgAdapter
             app_icon_name = @plist["CFBundleIcons~ipad"]["CFBundlePrimaryIcon"]["CFBundleIconName"]
           end
 
-          entry = zip_file.glob("Payload/*.app/#{app_icon_name}[6,4]0x[6,4]0@*.png").last
+          #尝试获取180px的图标
+          entry = zip_file.glob("Payload/*.app/#{app_icon_name}60x60@3x.png").last
+          if entry == nil
+            entry = zip_file.glob("Payload/*.app/#{app_icon_name}[6,4]0x[6,4]0@*.png").last
+          end
           
           if entry
             @app_icon = "#{path}/#{entry.name}"
