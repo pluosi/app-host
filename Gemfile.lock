@@ -41,6 +41,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    apktools (0.7.2)
+      rubyzip (~> 1.2.1)
     arel (8.0.0)
     autoprefixer-rails (9.6.0)
       execjs
@@ -255,6 +257,7 @@ PLATFORMS
 DEPENDENCIES
   CFPropertyList
   actionview (>= 5.1.6.2)
+  apktools
   bcrypt (~> 3.1.7)
   bootstrap-sass (>= 3.4.1)
   browser

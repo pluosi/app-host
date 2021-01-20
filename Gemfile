@@ -61,6 +61,8 @@ gem 'cancancan', '~> 2.0'
 
 gem 'ruby_android'
 
+gem 'apktools'
+
 gem 'kaminari'
 
 gem "paranoia", "~> 2.2"

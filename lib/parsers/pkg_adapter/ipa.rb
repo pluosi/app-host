@@ -4,32 +4,25 @@ module PkgAdapter
     
     require 'zip'
 
+    PLIST = 'Payload/*.app/Info.plist'
+    MOBILEPROVISION = 'Payload/*.app/embedded.mobileprovision'
+    
     def parse
         Zip::File.open(@path) do |zip_file|
           # Handle entries one by one
           path = tmp_dir
           FileUtils.rm_rf path
-          # zip_file.each do |entry|
-          #   # Extract to file/directory/symlink
-          #   p "Extracting #{entry.name}"
-          #   entry.extract("#{path}/#{entry.name}")
-          #   # content = entry.get_input_stream.read if entry.get_input_stream.respond_to? :read
-          # end
-
-          provision = zip_file.glob("Payload/*.app/embedded.mobileprovision").first
+          
+          provision = zip_file.glob(MOBILEPROVISION).first
           @provision = provision ? ConfigParser.mobileprovision(provision.get_input_stream.read) : {}
           
-          plist = zip_file.glob("Payload/*.app/Info.plist").first
+          plist = zip_file.glob(PLIST).first
           @plist = plist ? ConfigParser.plist(plist.get_input_stream.read) : {}
 
           # read icon name
-          if @plist["CFBundleIcons"] && @plist["CFBundleIcons"]["CFBundlePrimaryIcon"]
-            app_icon_name = @plist["CFBundleIcons"]["CFBundlePrimaryIcon"]["CFBundleIconName"]  
-          elsif @plist["CFBundleIcons~ipad"] && @plist["CFBundleIcons~ipad"]["CFBundlePrimaryIcon"]
-            app_icon_name = @plist["CFBundleIcons~ipad"]["CFBundlePrimaryIcon"]["CFBundleIconName"]
-          end
+          app_icon_name = (@plist["CFBundleIcons"]||@plist["CFBundleIcons~ipad"])&.dig("CFBundlePrimaryIcon","CFBundleIconName")
 
-          entry = zip_file.glob("Payload/*.app/#{app_icon_name}[6,4]0x[6,4]0@*.png").last
+          entry = zip_file.glob("Payload/*.app/#{app_icon_name}*x*0@*x.png").last
           
           if entry
             @app_icon = "#{path}/#{entry.name}"

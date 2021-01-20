@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181205180629) do
+ActiveRecord::Schema.define(version: 20210119125335) do
 
   create_table "apps", force: :cascade do |t|
     t.string "name"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20181205180629) do
     t.datetime "deleted_at"
     t.string "file_nick_name"
     t.string "features"
+    t.string "ext_info"
     t.index ["deleted_at"], name: "index_pkgs_on_deleted_at"
   end
 

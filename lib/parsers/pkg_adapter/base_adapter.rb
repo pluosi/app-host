@@ -7,7 +7,8 @@ module PkgAdapter
       unless File.exist? path
         raise "#{path} is not a exist file"
       end
-      parse if @path = path
+      @path = path
+      # parse if @path
     end
 
     def plat

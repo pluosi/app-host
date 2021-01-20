@@ -6,7 +6,9 @@ module PkgAdapter
     def parse
       @apk = Android::Apk.new(@path)
       if file_name = @apk.icon.keys.last
+
         icon = @apk.icon[file_name]
+        
         path = tmp_dir
         FileUtils.rm_rf path
         @app_icon = "#{path}/#{File.basename(file_name)}"

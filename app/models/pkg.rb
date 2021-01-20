@@ -24,6 +24,8 @@
 class Pkg < ApplicationRecord
   acts_as_paranoid
 
+  serialize :ext_info, Hash
+
   attr_accessor :app_icon
   include PlatAble
 
@@ -43,6 +45,7 @@ class Pkg < ApplicationRecord
   }
 
   after_create :save_icon
+  after_create :clean_tmp
 
   def initialize pars
     super pars
@@ -59,6 +62,7 @@ class Pkg < ApplicationRecord
 
   def parsing
     if file.path
+      parser.parse
       self.name = parser.app_name
       self.app_icon = parser.app_icon
       self.version = parser.app_version
@@ -67,6 +71,7 @@ class Pkg < ApplicationRecord
       self.bundle_id = parser.app_bundle_id
       self.plat_name = parser.plat
       self.uniq_key = parser.app_uniq_key
+      self.ext_info = parser.ext_info
     end
   end
 
@@ -77,12 +82,14 @@ class Pkg < ApplicationRecord
   def save_icon
     if app_icon&.end_with?(".png")
       self.icon.store!(File.new(app_icon))
-      self.save  
+      self.save
     end
   end
 
-  def ext_info
-    @ext_info ||= parser.ext_info
+  def clean_tmp
+    if File.exist?(parser.tmp_dir)
+      FileUtils.rm_rf parser.tmp_dir
+    end
   end
 
   def install_url
