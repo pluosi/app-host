@@ -4,7 +4,7 @@
     <div class="cell-container">
       <div class="icon">
         <% if app.icon %>
-          <%=image_tag(app.icon)%>  
+          <%=image_tag(app.icon.url)%>  
         <% else %>
           <div class="text-icon"><span><%=app.name[0,1]%></span></div>
         <% end %>
