@@ -11,7 +11,7 @@ module PkgAdapter
         Zip::File.open(@path) do |zip_file|
           # Handle entries one by one
           path = tmp_dir
-          FileUtils.rm_rf path
+          FileUtils.rm_rf(path) if File.exist?(path)
           
           provision = zip_file.glob(MOBILEPROVISION).first
           @provision = provision ? ConfigParser.mobileprovision(provision.get_input_stream.read) : {}

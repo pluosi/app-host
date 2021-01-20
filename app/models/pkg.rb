@@ -45,7 +45,7 @@ class Pkg < ApplicationRecord
   }
 
   after_create :save_icon
-  after_create :clean_tmp
+  # after_create :clean_tmp
 
   def initialize pars
     super pars
