@@ -5,10 +5,8 @@ module PkgAdapter
     require 'ruby_apk'
     require 'zip'
 
-
     ANDROID_MANIFEST = 'AndroidManifest.xml'
     RESOURCE = 'resources.arsc'
-    # MOBILEPROVISION = 'Payload/*.app/embedded.mobileprovision'
 
     def parse
 

@@ -17,7 +17,6 @@
 #
 
 class Plat < ApplicationRecord
-  acts_as_paranoid
 
   include PlatAble
 

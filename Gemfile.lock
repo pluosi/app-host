@@ -172,8 +172,6 @@ GEM
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     normalize-rails (8.0.1)
-    paranoia (2.4.3)
-      activerecord (>= 4.0, < 6.2)
     public_suffix (4.0.6)
     puma (5.1.1)
       nio4r (~> 2.0)
@@ -286,7 +284,6 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mini_magick
   normalize-rails
-  paranoia
   puma
   rails (~> 5)
   ruby_android

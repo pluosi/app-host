@@ -44,8 +44,6 @@ gem 'normalize-rails'
 
 gem 'jquery-rails'
 
-gem "paranoia"
-
 gem 'carrierwave'
 gem 'mini_magick'
 

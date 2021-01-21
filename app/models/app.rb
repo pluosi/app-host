@@ -22,8 +22,6 @@
 
 class App < ApplicationRecord
 
-  acts_as_paranoid
-
   scope :active, ->{ where(archived:false)}
   scope :archived, ->{ where(archived:true)}
 

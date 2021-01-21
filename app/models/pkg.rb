@@ -22,7 +22,6 @@
 #
 
 class Pkg < ApplicationRecord
-  acts_as_paranoid
 
   serialize :ext_info, Hash
 

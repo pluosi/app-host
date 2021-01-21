@@ -14,14 +14,12 @@
 #
 
 class User < ApplicationRecord
-
-  acts_as_paranoid
   
   has_secure_password
   
-  has_many :apps, :dependent => :destroy
-  has_many :plats, :dependent => :destroy
-  has_many :pkgs, :dependent => :destroy
+  has_many :apps
+  has_many :plats
+  has_many :pkgs
 
   MIN_PWD_LEN = 4
 
