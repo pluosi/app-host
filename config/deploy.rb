@@ -84,7 +84,7 @@ namespace :puma do
   desc 'start puma'
   task :start => :remote_environment do
     in_path(fetch(:current_path)) do
-      command %{bundle exec puma --config ./config/puma.rb -e production -d}
+      command %{bundle exec 'puma --config ./config/puma.rb -e production &'}
     end
   end
 
