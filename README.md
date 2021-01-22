@@ -18,7 +18,14 @@
 6.解析包信息，包括 iOS 的包类型 ADHOC 还是 release，udid，安卓的签名证书等<br>
 7.我编不下去了···哈哈~~<br>
 
-## 用法 1 Docker
+
+## 推荐用法 Docker 公有镜像
+```
+1. 把~/shared目录添加到Docker -> Preferences... -> Resources中（授权访问）
+2. docker run --name app_host -v ~/shared:/app/shared -p 3000:8686 -d tinyc/app-host:lastest
+```
+
+## 用法 2 Docker 自己编译
 ```
 1. > git clone https://github.com/pluosi/app-host.git /opt/app-host
 2. > cd /opt/app-host
@@ -28,8 +35,7 @@
 ps:数据库和上传的文件会保存在 ./shared 文件夹中
 ```
 
-
-## 用法 2 源码运行
+## 用法 3 源码运行
 ```
 1. > git clone https://github.com/pluosi/app-host.git /opt/app-host
 2. > cd /opt/app-host
