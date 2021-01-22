@@ -51,6 +51,7 @@ ps:数据库和上传的文件会保存在 ./shared 文件夹中
 
 ## 已知问题
 1. apk 包如果是非图片 logo，会无法显示 logo，因为目前还没实现 xml logo 的解析
+2. 如果不配置 https，ipa 将无法安装
 
 
 ## License
