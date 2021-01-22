@@ -49,8 +49,6 @@ gem 'mini_magick'
 
 gem 'rubyzip'
 
-gem 'config'
-
 gem 'browser'
 
 gem 'cancancan', '~> 2.0'

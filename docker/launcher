@@ -21,13 +21,12 @@ usage () {
 set -e
 set -o pipefail
 
-version=0.1.1
+version=0.2.0
 local_port=3000
 local_image=local_pluosi/app_host:$version
 container_name=app_host
 dockerdir=$(cd "$(dirname "$(dirname $0)")"; pwd -P)
 sharedir=$dockerdir/shared
-local_settings_file=$dockerdir/config/settings.local.yml
 
 loginfo() {
     if [[ -t 1 ]]; then
@@ -58,35 +57,18 @@ set_ruby_version(){
   ruby_version=$(cat .ruby-version)
 }
 
-init_secret_key(){
-  #init random rails secret_key_base
-  flag="#-- secret_key_base create by laucher --"
-  existing=$(cat $local_settings_file | grep "$flag" || true)
-  if [[ $existing == "" ]]; then
-    set_ruby_version
-    secret_key_base=$(docker run --rm ruby:$ruby_version ruby -e "require 'securerandom';puts SecureRandom.hex 64")
-    echo "" >> $local_settings_file
-    echo "$flag" >> $local_settings_file
-    echo "SECRET_KEY_BASE: $secret_key_base" >> $local_settings_file
-  fi
-}
-
 init_sharedir(){
   mkdir -p "$sharedir"
 }
 
 bootstrap() {
-
     init_sharedir
-
-    init_secret_key
-
     rebuild
 }
 
 rebuild(){
     loginfo "Now building the local docker image."
-    
+    docker image rm local_image || true
     if [[ "$quiet" == "" ]]; then
       (
         set -x
@@ -106,7 +88,8 @@ destroy(){
     (
         set -x
         docker stop -t 10 $container_name || true
-        docker rm $container_name
+        docker rm $container_name || true
+        docker image rm local_image || true
     )
 }
 
@@ -149,10 +132,6 @@ restart() {
 }
 
 check_prereqs() {
-    # check config
-    if [[ ! -e $local_settings_file  ]]; then
-        err_and_quit "The file $local_settings_file doesn't exist. Please copy config/settings.local.example.yml to config/settings.local.yml and write your config !"
-    fi
 
     # check docker
     if ! which docker >/dev/null; then

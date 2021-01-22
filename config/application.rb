@@ -23,15 +23,13 @@ module AppHost
 
     config.autoload_paths += %W( #{config.root}/lib )
 
-    config.action_mailer.default_url_options = { :host => Settings.HOST }
-
   end
 end
 
 module AppHost
   class << self
     def version
-      "0.1.1"
+      "0.2.0"
     end
   end
 end
