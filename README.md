@@ -57,19 +57,13 @@ ps:数据库和上传的文件会保存在 ./shared 文件夹中
 ## License
 AppHost is released under the MIT license. See LICENSE for details.
 
-## 截图-PC
-![MacDown logo](screenshots/index.png)
+## 预览
+![MacDown logo](screenshots/image1.png)
 
-![MacDown logo](screenshots/plat.png)
+![MacDown logo](screenshots/image2.png)
 
-![MacDown logo](screenshots/pkg.png)
+![MacDown logo](screenshots/image3.png)
 
-## 截图-Mobile
-![MacDown logo](screenshots/index_mobile.png)
-
-![MacDown logo](screenshots/plat_mobile.png)
-
-![MacDown logo](screenshots/pkg_mobile.png)
 
 
  
