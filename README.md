@@ -65,6 +65,7 @@ server {
         proxy_set_header  X-Real-IP $remote_addr;
         proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header  X-Forwarded-Proto https;
+        proxy_set_header  X-Forwarded-Port $server_port;
         proxy_pass http://172.21.35.62:3000; #此处改为 docker 服务的地址
     }
 }
