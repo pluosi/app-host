@@ -127,10 +127,10 @@ GEM
       rake
     mini_magick (4.11.0)
     mini_mime (1.0.2)
-    mini_portile2 (2.5.0)
+    mini_portile2 (2.5.3)
     minitest (5.14.3)
     nio4r (2.5.4)
-    nokogiri (1.11.1)
+    nokogiri (1.11.7)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     normalize-rails (8.0.1)
