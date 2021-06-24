@@ -47,11 +47,38 @@ ps:数据库和上传的文件会保存在 ./shared 文件夹中
 ```
 
 ## 关于 https
-1. https其实不属于本项目涉及的范畴，大家可以 google 一下 https 证书配置，挂 nginx 或者 apache 上都行，有条件的可以购买域名证书，没条件的自签名证书也是可以的
+如果需要用到ipa下载，必须配置 https，举例 ng 的配置参考
+```
+//https_app.conf
+server {
+    listen 443 ssl;
+    server_name  ota.xxx.com;
+    
+    # access_log /var/log/nginx/ota.xxx.com_access.log;
+
+    ssl_certificate      /home/xxx.com/nginx/public.pem;
+    ssl_certificate_key  /home/xxx.com/nginx/private.key;
+    ssl on;
+
+    location / {
+        proxy_set_header  Host $http_host;
+        proxy_set_header  X-Real-IP $remote_addr;
+        proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header  X-Forwarded-Proto https;
+        proxy_pass http://172.21.35.62:3000; #此处改为 docker 服务的地址
+    }
+}
+
+server {
+    listen 80;
+    server_name ota.xxx.com;
+    rewrite ^(.*)$  https://$host$1 permanent;
+}
+```
 
 ## 已知问题
 1. apk 包如果是非图片 logo，会无法显示 logo，因为目前还没实现 xml logo 的解析
-2. 如果不配置 https，ipa 将无法安装
+2. 如果不配置 https，ipa 将无法安装（苹果的限制）
 
 
 ## License
