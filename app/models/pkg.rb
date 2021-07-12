@@ -100,7 +100,7 @@ class Pkg < ApplicationRecord
   end
 
   def download_url
-    "#{Current.request.base_url}#{self.file}"
+    Rails.application.config.external_path == "" ? "#{Current.request.base_url}#{self.file}" : "#{Rails.application.config.external_path}#{self.file}"
   end
 
   def display_file_name
