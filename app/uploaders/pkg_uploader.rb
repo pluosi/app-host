@@ -46,4 +46,11 @@ class PkgUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+  after :store, :pkg_after_store
+  def pkg_after_store(file)
+    if model&.respond_to?(:pkg_after_store)
+      model.pkg_after_store
+    end
+  end
+
 end

@@ -1,6 +1,6 @@
 source 'https://gems.ruby-china.com'
 
-ruby '2.5.1'
+ruby '2.7.4'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -57,6 +57,7 @@ gem 'ruby_android'
 
 gem 'kaminari'
 
+gem 'config'
 
 gem 'CFPropertyList', require: 'cfpropertylist'
 

@@ -91,6 +91,17 @@ class Pkg < ApplicationRecord
     end
   end
 
+  def pkg_after_store
+    begin
+      shell = "#{Rails.root.join("config")}/pkg_after_create.sh"
+      if File.exist?(shell)
+        system("bash #{shell} '#{file.path}'")
+      end
+    rescue => e
+      puts e
+    end
+  end
+
   def install_url
     if ios?
       "itms-services://?action=download-manifest&url=#{Current.request.base_url}#{Rails.application.routes.url_helpers.manifest_pkg_path(self)}.plist"    
@@ -100,7 +111,12 @@ class Pkg < ApplicationRecord
   end
 
   def download_url
-    "#{Current.request.base_url}#{self.file}"
+    file_path = "#{self.file}"
+    if Settings.pkg_cdn_host.present? && !File.exist?("#{Rails.root.join('public')}#{file_path}")
+      return "#{Settings.pkg_cdn_host}#{file_path}"
+    else
+      return "#{Current.request.base_url}#{file_path}"
+    end
   end
 
   def display_file_name
