@@ -19,14 +19,4 @@ pkg_storage:
   #   passwd: "ftp"
   #   url: "https://ftp.xxxx.com"
   #   folder: "/app_host"
-  # s3:
-  #   region: "eu-west-1"              # optional, defaults to 'us-east-1'
-  #   aws_access_key_id: "xxx"         # required unless using use_iam_profile     
-  #   aws_secret_access_key: "yyy"     # required unless using use_iam_profile
-  #   fog_directory: "app_host"        # required
-  #   host: "s3.example.com"           # optional, defaults to nil
-  #   endpoint: "https://s3.xxxx.com"  # optional, defaults to nil
-  #   fog_public: false
-  #   use_iam_profile: true            # optional, defaults to false
-  #   fog_use_ssl_for_aws:  true       # return public url protocol
 check_local_pkg: false #开启pkg远程文件存储后，检测本地未迁移历史数据，默认关闭，如需要可打开

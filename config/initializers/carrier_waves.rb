@@ -26,23 +26,5 @@ elsif pkg_storage_type == :sftp
       :port     => sftp.port
     }
   end
-elsif pkg_storage_type == :fog
-  s3 = Settings.pkg_storage.fog
-  CarrierWave.configure do |config|
-    config.cache_storage = :file                            # uncomment the line :file instead of the default :storage.  Otherwise, it will use AWS as the temp cache store.
-    config.fog_credentials = {
-      provider:              'AWS',                         # required
-      aws_access_key_id:     s3.aws_access_key_id,          # required unless using use_iam_profile
-      aws_secret_access_key: s3.aws_secret_access_key,      # required unless using use_iam_profile
-      use_iam_profile:       s3.use_iam_profile,            # optional, defaults to false
-      region:                s3.region,                     # optional, defaults to 'us-east-1'
-      host:                  s3.host,                       # optional, defaults to nil
-      endpoint:              s3.endpoint                    # optional, defaults to nil
-    }
-    config.fog_directory  = s3.fog_directory                # required
-    config.fog_public     = s3.fog_public                                 
-    config.fog_use_ssl_for_aws = s3.fog_use_ssl_for_aws
-    config.fog_attributes = {}                              # optional, defaults to {}
-  end
 end
 
