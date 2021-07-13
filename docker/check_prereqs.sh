@@ -22,10 +22,14 @@ if [[ $existing != "" ]]; then
   echo "$secret_text" > $secret_file
 fi
 
+if [[ ! -f /app/shared/settings.local.yml ]]; then
+  touch /app/shared/settings.local.yml
+fi
+ln -sf /app/shared/settings.local.yml config/settings.local.yml
+
 rm db/production.sqlite3
 if [[ ! -f /app/shared/production.sqlite3 ]]; then
   ./bin/bundle exec rake db:migrate
   mv db/production.sqlite3 /app/shared/production.sqlite3
 fi
-
 ln -sf /app/shared/production.sqlite3 db/production.sqlite3

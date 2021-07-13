@@ -1,22 +1,32 @@
-# 以下配置，如需覆盖，请拷贝到 settings.local.yml 文件中修改
+# 以下配置，如需覆盖，请不要在此文件中修改，可拷贝到 settings.local.yml（不存在可手动创建） 文件中修改
 
-#包存储系统配置，默认存本地文件:file，支持:file,:ftp,:sftp,:s3
+#包存储系统配置，默认存本地文件:file，支持:file,:ftp,:sftp,:s3，类型请尽量在首次确定，后续修改可能会需要手动迁移老数据
 pkg_storage:
-  type: :ftp
-  ftp:
-    host: "127.0.0.1"
-    port: 21
-    user: "ftp"
-    passwd: "ftp"
-    url: "https://ftp.xxxx.com"
-    folder: "/app_host"
-    passive: true
-    tls: false
-  sftp:
-    host: "127.0.0.1"
-    port: 22
-    user: "ftp"
-    passwd: "ftp"
-    url: "https://ftp.xxxx.com"
-    folder: "/app_host"
+  type: :file   
+  # ftp:
+  #   host: "127.0.0.1"
+  #   port: 21
+  #   user: "ftp"
+  #   passwd: "ftp"
+  #   url: "https://ftp.xxxx.com"
+  #   folder: "/app_host"
+  #   passive: true
+  #   tls: false
+  # sftp:
+  #   host: "127.0.0.1"
+  #   port: 22
+  #   user: "ftp"
+  #   passwd: "ftp"
+  #   url: "https://ftp.xxxx.com"
+  #   folder: "/app_host"
+  # s3:
+  #   region: "eu-west-1"              # optional, defaults to 'us-east-1'
+  #   aws_access_key_id: "xxx"         # required unless using use_iam_profile     
+  #   aws_secret_access_key: "yyy"     # required unless using use_iam_profile
+  #   fog_directory: "app_host"        # required
+  #   host: "s3.example.com"           # optional, defaults to nil
+  #   endpoint: "https://s3.xxxx.com"  # optional, defaults to nil
+  #   fog_public: false
+  #   use_iam_profile: true            # optional, defaults to false
+  #   fog_use_ssl_for_aws:  true       # return public url protocol
 check_local_pkg: false #开启pkg远程文件存储后，检测本地未迁移历史数据，默认关闭，如需要可打开

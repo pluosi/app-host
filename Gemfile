@@ -19,6 +19,7 @@ gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # See https://github.com/rails/execjs#readme for more supported runtimes
+
 gem 'therubyracer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
@@ -63,7 +64,7 @@ gem 'CFPropertyList', require: 'cfpropertylist'
 gem 'config', '~> 3.1.0'
 
 gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp/all' # both FTP/SFTP
-
+gem "fog-aws"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
