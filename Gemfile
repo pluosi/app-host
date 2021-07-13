@@ -1,6 +1,6 @@
 source 'https://gems.ruby-china.com'
 
-ruby '2.5.1'
+ruby '2.7.4'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -59,6 +59,11 @@ gem 'kaminari'
 
 
 gem 'CFPropertyList', require: 'cfpropertylist'
+
+gem 'config', '~> 3.1.0'
+
+gem 'carrierwave-ftp', :require => 'carrierwave/storage/ftp/all' # both FTP/SFTP
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

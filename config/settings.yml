@@ -1,0 +1,22 @@
+# 以下配置，如需覆盖，请拷贝到 settings.local.yml 文件中修改
+
+#包存储系统配置，默认存本地文件:file，支持:file,:ftp,:sftp,:s3
+pkg_storage:
+  type: :ftp
+  ftp:
+    host: "127.0.0.1"
+    port: 21
+    user: "ftp"
+    passwd: "ftp"
+    url: "https://ftp.xxxx.com"
+    folder: "/app_host"
+    passive: true
+    tls: false
+  sftp:
+    host: "127.0.0.1"
+    port: 22
+    user: "ftp"
+    passwd: "ftp"
+    url: "https://ftp.xxxx.com"
+    folder: "/app_host"
+check_local_pkg: false #开启pkg远程文件存储后，检测本地未迁移历史数据，默认关闭，如需要可打开

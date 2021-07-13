@@ -100,7 +100,18 @@ class Pkg < ApplicationRecord
   end
 
   def download_url
-    "#{Current.request.base_url}#{self.file}"
+    file_path = "#{self.file}"
+    if file_path.start_with?('/')
+      return "#{Current.request.base_url}#{file_path}"
+    elsif Settings.check_local_pkg
+      #检测本地是否有文件，可用于增量迁移数据时保留本地老数据可用
+      target = "/uploads/pkg/file"
+      file_path_splited = target + file_path.split(target).last
+      if File.exist?("public#{file_path_splited}")
+        return "#{Current.request.base_url}#{file_path_splited}"    
+      end
+    end
+    return file_path
   end
 
   def display_file_name
