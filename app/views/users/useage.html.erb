@@ -1,14 +1,35 @@
 <%=render 'layouts/header'%>
 
 <div class="container user api_token">
-  <h3>Api上传方式</h3>
+  <h3>Api访问</h3>
   <hr>
   
   <h4>ApiToken</h4>
    <%=current_user.api_token%> <%=link_to '',api_token_user_path(current_user),class:"glyphicon glyphicon-refresh", data: {:confirm => 'Are you sure?'},:method => :put%>
   <hr>
   
-  <h4>USEGAE:</h4>
+  <h4>USEAGE:</h4>
+  <h5>提交版本</h5>
   curl --form plat_id=<span class="alert-danger">34</span> --form file_nick_name=<span class="alert-danger">file_nick_name(可选)</span> --form token=<span class="alert-danger"><%=current_user.api_token%></span> --form features=<span class="alert-danger">features(可选)</span> --form file=<span class="alert-danger">@/xx/xx.ipa</span> <%="#{request.base_url}"%>/api/pkgs
+  
+  <br/><br/>
+  <h5>获取指定渠道的最新版本</h5>
+  curl <%="#{request.base_url}"%>/api/plats/:plat_id/latest
+  
+  <br/><br/>
+  <h5>获取指定id包</h5>
+  curl <%="#{request.base_url}"%>/api/pkgs/:pkg_id
+  
+  <br/><br/>
+  <h3>页面访问</h3>
+  以下只列出了部分不容易被发现的功能地址
+  <hr>
+  <h5>获取指定渠道的最新版本</h5>
+  <%="#{request.base_url}"%>/plats/:plat_id/latest
+
+  <br/><br/>
+  <h5>获取设备udid</h5>
+  <%="#{request.base_url}"%>/udid （只对iOS设备有效）
+
 
 </div>

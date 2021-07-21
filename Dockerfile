@@ -1,4 +1,4 @@
-FROM ruby:2.5.1
+FROM ruby:2.7.4
 
 ENV RAILS_ENV production
 
@@ -6,6 +6,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         imagemagick \
         libsqlite3-dev \
+        nodejs \
         nginx \
     && rm -rf /var/lib/apt/lists/*
 

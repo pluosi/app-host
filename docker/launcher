@@ -21,7 +21,7 @@ usage () {
 set -e
 set -o pipefail
 
-version=0.2.0
+version=0.2.4
 local_port=3000
 local_image=local_pluosi/app_host:$version
 container_name=app_host

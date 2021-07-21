@@ -47,6 +47,26 @@ class PlatsController < ApplicationController
     redirect_to app_plat_path @plat.app, @plat
   end
 
+  def latest
+    plat_id = params[:id]
+    @pkg = Pkg.where(plat_id:plat_id).last
+    history = Pkg.where("id < ?",@pkg.id).limit(20).where(plat_id:@pkg.plat_id).id_desc
+    history.each do |e|
+      @history ||= {}
+      time_str = e.created_at.strftime("%Y-%m-%d")
+      @history[time_str] ||= []
+      @history[time_str] << e
+    end
+    unless (browser.platform.ios? && !@pkg.ios?) || (browser.platform.android? && !@pkg.android?)
+      @download_url = (browser.platform.android? || browser.platform.ios?) ? @pkg.install_url : @pkg.download_url
+    end
+
+    render "pkgs/show"
+  rescue => e
+    render json: {error: "#{e.message}"}
+  end
+
+
   def api_sort
     authorize!(:sort, Plat)
     ids = params[:ids].split(",").map(&:to_i)
@@ -56,6 +76,12 @@ class PlatsController < ApplicationController
       plat = map[id]
       plat.update_column(:sort,index)
     end
+  end
+
+  def api_latest
+    plat_id = params[:plat_id]
+    pkg = Pkg.where(plat_id:plat_id).last
+    render :json => pkg.to_render_json
   end
 
   private

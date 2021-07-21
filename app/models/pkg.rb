@@ -106,5 +106,16 @@ class Pkg < ApplicationRecord
   def display_file_name
     File.basename(file.path,".*")
   end
+
+  def to_render_json
+    key_white_list = [:id,:app_id,:name,:file_nick_name,:features,:plat_name,:plat_id,:bundle_id,:version,:build,:size_mb,:uniq_key,:user_id,:ext_info,:install_url,:download_url,:created_at]
+    json = {}
+    key_white_list.each do |key|
+      json[key] = self.send(key.to_s)
+    end
+    json[:icon_url] = "#{Current.request.base_url}#{icon.url}"
+    json
+  end
+
   
 end
