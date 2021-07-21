@@ -23,8 +23,9 @@ module PkgAdapter
           @manifest = Android::Manifest.new(manifest.get_input_stream.read,@resource)
 
           icon_id = @manifest.doc.elements['/manifest/application'].attributes['icon']
+
           if /^@(\w+\/\w+)|(0x[0-9a-fA-F]{8})$/ =~ icon_id
-            drawables = @resource.find(icon_id)
+            drawables = @resource.find(icon_id).select{|item|item.end_with?(".png")}
             @icons = Hash[drawables.map {|name| [name, _file(zip_file,name)] }]
           else
             @icons = { icon_id => _file(zip_file,icon_id) } # ugh!: not tested!!
