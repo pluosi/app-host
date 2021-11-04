@@ -88,6 +88,15 @@ class PkgsController < ApplicationController
   end
 
 
+  def api_show
+    pkg_id = params[:pkg_id]
+    pkg = Pkg.find(pkg_id)
+    render :json => pkg.to_render_json
+  rescue => e
+    render json: {error: "#{e.message}"}
+  end
+
+
   private
   
   def set_plat

@@ -10,13 +10,16 @@ Rails.application.routes.draw do
 
   resources :users do
     member do 
-      get :api_token
+      get :useage
       put :api_token, to: "users#refresh_api_token"
     end
   end
 
   resources :plats do
     resources :pkgs
+    member do
+      get :latest
+    end
   end
 
   resources :pkgs, only:[:show] do
@@ -33,10 +36,14 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
   
+  resource :api, only:[] do
+    post "pkgs" => "pkgs#api_create"
+    put "plat/sort" => "plats#api_sort"
+    get "plats/:plat_id/latest" => "plats#api_latest"
+
+    get "pkgs/:pkg_id" => "pkgs#api_show"
+  end
+  
   root "apps#index"
-
-  post "api/pkgs" => "pkgs#api_create"
-
-  put "api/plat/sort" => "plats#api_sort"
 
 end

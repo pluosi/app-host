@@ -65,7 +65,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def api_token
+  def usegae
   end
 
   def refresh_api_token
