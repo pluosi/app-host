@@ -29,12 +29,18 @@ module Android
           
           # puts @strings[name_id]
 
+          
           elem = REXML::Element.new(@strings[name_id])
           # puts "start tag %d(%#x): #{@strings[name_id]} attrs:#{num_attrs}" % [last_pos, last_pos]
           @parents.last.add_element elem
+
           num_attrs.times do
             key, val = parse_attribute
-            elem.add_attribute(key, val)
+            begin
+                elem.add_attribute(key, val)
+            rescue => e
+              p "error:#{e}"
+            end
           end
           @parents.push elem
         when TAG_END
