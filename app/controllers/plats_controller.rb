@@ -84,6 +84,12 @@ class PlatsController < ApplicationController
     render :json => pkg.to_render_json
   end
 
+  def api_latest_download
+    plat_id = params[:plat_id]
+    @pkg = Pkg.where(plat_id:plat_id).last
+    redirect_to @pkg.file.url and return
+  end
+
   private
   # # Use callbacks to share common setup or constraints between actions.
   def set_app

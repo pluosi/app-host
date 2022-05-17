@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     post "pkgs" => "pkgs#api_create"
     put "plat/sort" => "plats#api_sort"
     get "plats/:plat_id/latest" => "plats#api_latest"
-
+    get "plats/:plat_id/latest/download" => "plats#api_latest_download"
     get "pkgs/:pkg_id" => "pkgs#api_show"
   end
   
