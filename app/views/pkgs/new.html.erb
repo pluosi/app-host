@@ -17,8 +17,8 @@
     </div>
 
     <div class="form-group">
-      <label for="features">变更描述</label>
-      <%= f.text_area :features, class:"form-control", placeholder:"描述该包修改细节" %>
+      <label for="features">变更描述 <span class="ui-red-color">*</span></label>
+      <%= f.text_area :features, required:true, class:"form-control", placeholder:"描述该包修改细节" %>
     </div>
     
     <%=f.submit "上传", class:"btn btn-primary ui-plat"%>

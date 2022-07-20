@@ -14,9 +14,21 @@
         </span>
 
         <span class="sub-title">
-         <%=pkg.name%> <span class="tint-text"><%="#{pkg.version}, build:#{pkg.build}"%></span>
+          <%=pkg.name%> <span class="tint-text"><%="#{pkg.version}, build:#{pkg.build}"%></span>
+          <% if pkg.features.present? %>
+            <div class="features">
+              <div class="wrap">
+                <h3 class="title">变更描述:</h3>
+                <p class="info">
+                  <%pkg.features.split("\n").each do |line|%>
+                    <%=line%><br/>
+                  <%end%>
+                </p>
+              </div>
+            </div>
+          <% end %>
         </span>
-      
+
         <div class="actions">
           <% download_url = (browser.platform.android? || browser.platform.ios?) ? pkg.install_url : pkg.download_url %>
 
@@ -29,7 +41,7 @@
           <% if can? :destroy, pkg %>
             <%=button_to '删除', plat_pkg_path(pkg.plat, pkg), form_class: "delete_btn", class:"btn-danger", data: {:confirm => 'Are you sure?'}, :method => :delete %>
           <% end %>
-          
+
         </div>
       </div>
     </div>

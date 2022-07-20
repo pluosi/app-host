@@ -46,6 +46,7 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     arel (9.0.0)
+    ast (2.4.2)
     autoprefixer-rails (10.2.0.0)
       execjs
     bcrypt (3.1.16)
@@ -134,6 +135,9 @@ GEM
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     normalize-rails (8.0.1)
+    parallel (1.22.1)
+    parser (3.1.2.0)
+      ast (~> 2.4.1)
     public_suffix (4.0.6)
     puma (3.12.6)
     racc (1.5.2)
@@ -164,11 +168,26 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.19.0, < 2.0)
+    rainbow (3.1.1)
     rake (13.0.3)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     ref (2.0.0)
+    regexp_parser (2.5.0)
+    rexml (3.2.5)
+    rubocop (1.28.2)
+      parallel (~> 1.10)
+      parser (>= 3.1.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.17.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.17.0)
+      parser (>= 3.1.1.0)
+    ruby-progressbar (1.11.0)
     ruby-vips (2.0.17)
       ffi (~> 1.9)
     ruby_android (0.7.7)
@@ -213,6 +232,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
+    unicode-display_width (2.2.0)
     web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -246,6 +266,7 @@ DEPENDENCIES
   normalize-rails
   puma
   rails (~> 5)
+  rubocop
   ruby_android
   rubyzip
   sass-rails
@@ -263,4 +284,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   1.16.1
+   1.17.3
