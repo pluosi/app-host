@@ -27,7 +27,7 @@
 
 ## 用法 2 Docker 自己编译
 ```
-1. > git clone https://github.com/pluosi/app-host.git /opt/app-host
+1. > git clone https://github.com/aiquantong/app-host.git /opt/app-host
 2. > cd /opt/app-host
 5. > ./docker/launcher bootstrap -v #该步骤依赖网络，所以如果网络不稳定报错了，可以重试几次
 6. > ./docker/launcher start
@@ -37,7 +37,7 @@ ps:数据库和上传的文件会保存在 ./shared 文件夹中
 
 ## 用法 3 源码运行
 ```
-1. > git clone https://github.com/pluosi/app-host.git /opt/app-host
+1. > git clone https://github.com/aiquantong/app-host.git /opt/app-host
 2. > cd /opt/app-host
 4. 修改 config/secrets.yml 中 `production下的secret_key_base` ,可以运行`rake secret`得到
 5. bundle install
